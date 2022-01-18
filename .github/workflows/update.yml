@@ -17,22 +17,23 @@ jobs:
           repo: tibiadata-api-go
           tag: latest
           file: swagger.json
+          path: docs
           token: ${{ github.GITHUB_TOKEN }}
 
-      - name: Manipulate swagger files with custom settings
+      - name: Manipulate swagger.json with custom settings
         id: swagger-manipulation
         run: |
           # set api host to api.tibiadata.com
-          cat swagger.json | jq '.host = "api.tibiadata.com"' > swagger.json
+          cat docs/swagger.json | jq '.host = "api.tibiadata.com"' > docs/swagger.json
 
           # set scheme for server to only https
-          cat swagger.json | jq '.schemes = ["https"]' > swagger.json
+          cat docs/swagger.json | jq '.schemes = ["https"]' > docs/swagger.json
 
           # getting release version from swagger file
-          echo "::set-output name=release::$(cat swagger.json | jq -c '.info.version')"
+          echo "::set-output name=release::$(cat docs/swagger.json | jq -c '.info.version')"
 
-      - name: Commit swagger files to repo
+      - name: Commit swagger.json to repo
         uses: EndBug/add-and-commit@v7
         with:
-          add: "swagger.*"
-          message: "automatic update of swagger files (release ${{ steps.swagger-manipulation.outputs.release }})"
+          add: "docs/swagger.json"
+          message: "automatic update of swagger.json (release ${{ steps.swagger-manipulation.outputs.release }})"
