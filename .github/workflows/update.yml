@@ -10,10 +10,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Removing old swagger.json file
-        run: |
-          rm docs/swagger.json
-
       - name: Download latest swagger.json from tibiadata-api-go
         uses: i3h/download-release-asset@v1.3.2
         with:
@@ -28,12 +24,18 @@ jobs:
         id: swagger-manipulation
         run: |
           # set api host to api.tibiadata.com
-          cat docs/swagger.json | jq '.host = "api.tibiadata.com"' > docs/swagger.json
+          contents="$(jq '.host = "api.tibiadata.com"' docs/swagger.json)" && \
+          echo "${contents}" > docs/swagger.json
 
           # set scheme for server to only https
-          cat docs/swagger.json | jq '.schemes = ["https"]' > docs/swagger.json
+          contents="$(jq '.schemes = ["https"]' docs/swagger.json)" && \
+          echo "${contents}" > docs/swagger.json
+
+          # getting release version from swagger file
+          echo "::set-output name=release::$(cat docs/swagger.json | jq -c '.info.version')"
 
       - name: Commit swagger.json to repo
         uses: EndBug/add-and-commit@v7
         with:
-          message: automatic update of swagger.json
+          add: docs/swagger.json
+          message: automatic update of swagger.json (release ${{ steps.swagger-manipulation.outputs.release }})
