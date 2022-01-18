@@ -1,0 +1,1927 @@
+{
+  "schemes": [
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the API documentation for the TibiaData API.\nThe documentation contains version 3 and above.",
+    "title": "TibiaData API",
+    "termsOfService": "https://tibiadata.com/terms/",
+    "contact": {
+      "name": "TibiaData",
+      "url": "https://www.tibiadata.com/contact/",
+      "email": "tobias@tibiadata.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
+    },
+    "version": "v0.4.0"
+  },
+  "host": "api.tibiadata.com",
+  "basePath": "/",
+  "paths": {
+    "/v3/characters/character/{character}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all information about one character available",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "characters"
+        ],
+        "summary": "Show one character",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The character name",
+            "name": "character",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.CharacterResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/creatures": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all creatures listed",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "creatures"
+        ],
+        "summary": "List of creatures",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.CreaturesOverviewResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/creatures/creature/{race}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all information about one creature",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "creatures"
+        ],
+        "summary": "Show one creature",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The race of creature",
+            "name": "race",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.CreatureResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/fansites": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "List of all promoted and supported fansites",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "fansites"
+        ],
+        "summary": "Promoted and supported fansites",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.FansitesResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/guilds/guild/{guild}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all information about one guild",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "guilds"
+        ],
+        "summary": "Show one guild",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The name of guild",
+            "name": "guild",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.GuildResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/guilds/world/{world}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all guilds on a certain world",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "guilds"
+        ],
+        "summary": "List all guilds from a world",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The world",
+            "name": "world",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.GuildsOverviewResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/highscores/world/{world}/{category}/{vocation}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all highscores of tibia",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "highscores"
+        ],
+        "summary": "Highscores of tibia",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The world (default: all)",
+            "name": "world",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "The category (default: experience)",
+            "name": "category",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "The vocation (default: all)",
+            "name": "vocation",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.HighscoresResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/killstatistics/world/{world}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all killstatistics filtered on world",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "killstatistics"
+        ],
+        "summary": "The killstatistics",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The world to show",
+            "name": "world",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.KillStatisticsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/archive": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show news archive with a filtering on 90 days",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show news archive (90 days)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsListResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/archive/{days}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show news archive with a filtering option on days",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show news archive (with days filter)",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "The number of days to show",
+            "name": "days",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsListResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/id/{news_id}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show one news entry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show one news entry",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "The ID of news entry",
+            "name": "news_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/latest": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show newslist with filtering on articles and news of last 90 days",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show newslist (90 days)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsListResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/newsticker": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show news of type news tickers of last 90 days",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show news tickers (90 days)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsListResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/spells": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all spells",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "spells"
+        ],
+        "summary": "List all spells",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.SpellsOverviewResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/spells/spell/{spell}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all information about one spell",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "spells"
+        ],
+        "summary": "Show one spell",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The name of spell",
+            "name": "spell",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.SpellInformationResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/worlds": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all worlds of Tibia",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "worlds"
+        ],
+        "summary": "List of all worlds",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.WorldsOverviewResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/worlds/world/{world}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Show all information about one world",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "worlds"
+        ],
+        "summary": "Show one world",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The name of world",
+            "name": "world",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.WorldResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "main.AccountBadges": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "icon_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "main.AccountInformation": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "string"
+        },
+        "loyalty_title": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        }
+      }
+    },
+    "main.Achievements": {
+      "type": "object",
+      "properties": {
+        "grade": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "boolean"
+        }
+      }
+    },
+    "main.Character": {
+      "type": "object",
+      "properties": {
+        "account_status": {
+          "type": "string"
+        },
+        "achievement_points": {
+          "type": "integer"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "deletion_date": {
+          "type": "string"
+        },
+        "former_names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "former_worlds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "guild": {
+          "$ref": "#/definitions/main.CharacterGuild"
+        },
+        "houses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Houses"
+          }
+        },
+        "last_login": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "married_to": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "residence": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "traded": {
+          "type": "boolean"
+        },
+        "unlocked_titles": {
+          "type": "integer"
+        },
+        "vocation": {
+          "type": "string"
+        },
+        "world": {
+          "type": "string"
+        }
+      }
+    },
+    "main.CharacterGuild": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "string"
+        }
+      }
+    },
+    "main.CharacterResponse": {
+      "type": "object",
+      "properties": {
+        "characters": {
+          "$ref": "#/definitions/main.Characters"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.Characters": {
+      "type": "object",
+      "properties": {
+        "account_badges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.AccountBadges"
+          }
+        },
+        "account_information": {
+          "$ref": "#/definitions/main.AccountInformation"
+        },
+        "achievements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Achievements"
+          }
+        },
+        "character": {
+          "$ref": "#/definitions/main.Character"
+        },
+        "deaths": {
+          "$ref": "#/definitions/main.Deaths"
+        },
+        "other_characters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.OtherCharacters"
+          }
+        }
+      }
+    },
+    "main.ContentType": {
+      "type": "object",
+      "properties": {
+        "statistics": {
+          "type": "boolean"
+        },
+        "texts": {
+          "type": "boolean"
+        },
+        "tools": {
+          "type": "boolean"
+        },
+        "wiki": {
+          "type": "boolean"
+        }
+      }
+    },
+    "main.Creature": {
+      "type": "object",
+      "properties": {
+        "be_convinced": {
+          "type": "boolean"
+        },
+        "be_paralysed": {
+          "type": "boolean"
+        },
+        "be_summoned": {
+          "type": "boolean"
+        },
+        "behaviour": {
+          "type": "string"
+        },
+        "convinced_mana": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "experience_points": {
+          "type": "integer"
+        },
+        "featured": {
+          "type": "boolean"
+        },
+        "hitpoints": {
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "immune": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "is_lootable": {
+          "type": "boolean"
+        },
+        "loot_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "race": {
+          "type": "string"
+        },
+        "see_invisible": {
+          "type": "boolean"
+        },
+        "strong": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "summoned_mana": {
+          "type": "integer"
+        },
+        "weakness": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "main.CreatureResponse": {
+      "type": "object",
+      "properties": {
+        "creature": {
+          "$ref": "#/definitions/main.Creature"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.CreaturesContainer": {
+      "type": "object",
+      "properties": {
+        "boosted": {
+          "$ref": "#/definitions/main.OverviewCreature"
+        },
+        "creature_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.OverviewCreature"
+          }
+        }
+      }
+    },
+    "main.CreaturesOverviewResponse": {
+      "type": "object",
+      "properties": {
+        "creatures": {
+          "$ref": "#/definitions/main.CreaturesContainer"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.DeathEntries": {
+      "type": "object",
+      "properties": {
+        "assists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Killers"
+          }
+        },
+        "killers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Killers"
+          }
+        },
+        "level": {
+          "type": "integer"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        }
+      }
+    },
+    "main.Deaths": {
+      "type": "object",
+      "properties": {
+        "death_entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.DeathEntries"
+          }
+        },
+        "truncated": {
+          "description": "deathlist can be truncated.. but we don't have logic for that atm",
+          "type": "boolean"
+        }
+      }
+    },
+    "main.Entry": {
+      "type": "object",
+      "properties": {
+        "last_day_killed": {
+          "type": "integer"
+        },
+        "last_day_players_killed": {
+          "type": "integer"
+        },
+        "last_week_killed": {
+          "type": "integer"
+        },
+        "last_week_players_killed": {
+          "type": "integer"
+        },
+        "race": {
+          "type": "string"
+        }
+      }
+    },
+    "main.Fansite": {
+      "type": "object",
+      "properties": {
+        "contact": {
+          "type": "string"
+        },
+        "content_type": {
+          "$ref": "#/definitions/main.ContentType"
+        },
+        "fansite_item": {
+          "type": "boolean"
+        },
+        "fansite_item_url": {
+          "type": "string"
+        },
+        "homepage": {
+          "type": "string"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "social_media": {
+          "$ref": "#/definitions/main.SocialMedia"
+        },
+        "specials": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "main.Fansites": {
+      "type": "object",
+      "properties": {
+        "promoted": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Fansite"
+          }
+        },
+        "supported": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Fansite"
+          }
+        }
+      }
+    },
+    "main.FansitesResponse": {
+      "type": "object",
+      "properties": {
+        "fansites": {
+          "$ref": "#/definitions/main.Fansites"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.Guild": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "disband_condition": {
+          "type": "string"
+        },
+        "disband_date": {
+          "type": "string"
+        },
+        "founded": {
+          "type": "string"
+        },
+        "guildhalls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Guildhall"
+          }
+        },
+        "homepage": {
+          "type": "string"
+        },
+        "in_war": {
+          "type": "boolean"
+        },
+        "invites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.InvitedGuildMember"
+          }
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.GuildMember"
+          }
+        },
+        "members_invited": {
+          "type": "integer"
+        },
+        "members_total": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "open_applications": {
+          "type": "boolean"
+        },
+        "players_offline": {
+          "type": "integer"
+        },
+        "players_online": {
+          "type": "integer"
+        },
+        "world": {
+          "type": "string"
+        }
+      }
+    },
+    "main.GuildMember": {
+      "type": "object",
+      "properties": {
+        "joined": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "vocation": {
+          "type": "string"
+        }
+      }
+    },
+    "main.GuildResponse": {
+      "type": "object",
+      "properties": {
+        "guilds": {
+          "$ref": "#/definitions/main.Guilds"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.Guildhall": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "paid_until": {
+          "description": "Town      string `json:\"town\"`       // We can collect that from cached info?\n\t\tStatus    string `json:\"status\"`     // rented (but maybe also auctioned)\n\t\tOwner     string `json:\"owner\"`      // We can collect that from cached info?\n\t\tHouseID   int    `json:\"houseid\"`    // We can collect that from cached info?",
+          "type": "string"
+        },
+        "world": {
+          "description": "Maybe duplicate info? Guild can only be on one world..",
+          "type": "string"
+        }
+      }
+    },
+    "main.Guilds": {
+      "type": "object",
+      "properties": {
+        "guild": {
+          "$ref": "#/definitions/main.Guild"
+        }
+      }
+    },
+    "main.GuildsOverviewResponse": {
+      "type": "object",
+      "properties": {
+        "guilds": {
+          "$ref": "#/definitions/main.OverviewGuilds"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.Highscore": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "description": "Level column",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Name column",
+          "type": "string"
+        },
+        "rank": {
+          "description": "Rank column",
+          "type": "integer"
+        },
+        "title": {
+          "description": "Title column (when category: loyalty)",
+          "type": "string"
+        },
+        "value": {
+          "description": "Points/SkillLevel column",
+          "type": "integer"
+        },
+        "vocation": {
+          "description": "Vocation column",
+          "type": "string"
+        },
+        "world": {
+          "description": "World column",
+          "type": "string"
+        }
+      }
+    },
+    "main.Highscores": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "highscore_age": {
+          "type": "integer"
+        },
+        "highscore_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Highscore"
+          }
+        },
+        "vocation": {
+          "type": "string"
+        },
+        "world": {
+          "type": "string"
+        }
+      }
+    },
+    "main.HighscoresResponse": {
+      "type": "object",
+      "properties": {
+        "highscores": {
+          "$ref": "#/definitions/main.Highscores"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.Houses": {
+      "type": "object",
+      "properties": {
+        "houseid": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "paid": {
+          "type": "string"
+        },
+        "town": {
+          "type": "string"
+        }
+      }
+    },
+    "main.Information": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "integer"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      }
+    },
+    "main.InvitedGuildMember": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "main.KillStatistics": {
+      "type": "object",
+      "properties": {
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Entry"
+          }
+        },
+        "total": {
+          "$ref": "#/definitions/main.Total"
+        },
+        "world": {
+          "type": "string"
+        }
+      }
+    },
+    "main.KillStatisticsResponse": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        },
+        "killstatistics": {
+          "$ref": "#/definitions/main.KillStatistics"
+        }
+      }
+    },
+    "main.Killers": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "player": {
+          "type": "boolean"
+        },
+        "summon": {
+          "type": "string"
+        },
+        "traded": {
+          "type": "boolean"
+        }
+      }
+    },
+    "main.News": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "content_html": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "main.NewsItem": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "news": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "url_api": {
+          "type": "string"
+        }
+      }
+    },
+    "main.NewsListResponse": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        },
+        "news": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.NewsItem"
+          }
+        }
+      }
+    },
+    "main.NewsResponse": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        },
+        "news": {
+          "$ref": "#/definitions/main.News"
+        }
+      }
+    },
+    "main.OnlinePlayers": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "vocation": {
+          "type": "string"
+        }
+      }
+    },
+    "main.OtherCharacters": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "description": "don't know how to do that yet..",
+          "type": "boolean"
+        },
+        "main": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "description": "online/offline",
+          "type": "string"
+        },
+        "traded": {
+          "type": "boolean"
+        },
+        "world": {
+          "type": "string"
+        }
+      }
+    },
+    "main.OverviewCreature": {
+      "type": "object",
+      "properties": {
+        "featured": {
+          "type": "boolean"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "race": {
+          "type": "string"
+        }
+      }
+    },
+    "main.OverviewGuild": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "main.OverviewGuilds": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.OverviewGuild"
+          }
+        },
+        "formation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.OverviewGuild"
+          }
+        },
+        "world": {
+          "type": "string"
+        }
+      }
+    },
+    "main.OverviewWorld": {
+      "type": "object",
+      "properties": {
+        "battleye_date": {
+          "description": "BattlEye Status: null if since release / else show date?",
+          "type": "string"
+        },
+        "battleye_protected": {
+          "description": "BattlEye Status: true if protected / false if \"Not protected by BattlEye.\"",
+          "type": "boolean"
+        },
+        "game_world_type": {
+          "description": "BattlEye Status: regular / experimental / tournament (if Tournament World Type exists)",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location:",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "players_online": {
+          "description": "Online:",
+          "type": "integer"
+        },
+        "premium_only": {
+          "description": "Additional Information: premium = true / else: false",
+          "type": "boolean"
+        },
+        "pvp_type": {
+          "description": "PvP Type:",
+          "type": "string"
+        },
+        "status": {
+          "description": "Online:",
+          "type": "string"
+        },
+        "tournament_world_type": {
+          "description": "BattlEye Status: null (default?) / regular / restricted",
+          "type": "string"
+        },
+        "transfer_type": {
+          "description": "Additional Information: regular (if not present) / locked / blocked",
+          "type": "string"
+        }
+      }
+    },
+    "main.OverviewWorlds": {
+      "type": "object",
+      "properties": {
+        "players_online": {
+          "description": "Calculated value",
+          "type": "integer"
+        },
+        "record_date": {
+          "description": "Overall Maximum:",
+          "type": "string"
+        },
+        "record_players": {
+          "description": "Overall Maximum:",
+          "type": "integer"
+        },
+        "regular_worlds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.OverviewWorld"
+          }
+        },
+        "tournament_worlds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.OverviewWorld"
+          }
+        }
+      }
+    },
+    "main.RuneInformation": {
+      "type": "object",
+      "properties": {
+        "damage_type": {
+          "type": "string"
+        },
+        "group_attack": {
+          "type": "boolean"
+        },
+        "group_healing": {
+          "type": "boolean"
+        },
+        "group_support": {
+          "type": "boolean"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "magic_level": {
+          "type": "integer"
+        },
+        "vocation": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "main.SocialMedia": {
+      "type": "object",
+      "properties": {
+        "discord": {
+          "type": "boolean"
+        },
+        "facebook": {
+          "type": "boolean"
+        },
+        "instagram": {
+          "type": "boolean"
+        },
+        "reddit": {
+          "type": "boolean"
+        },
+        "twitch": {
+          "type": "boolean"
+        },
+        "twitter": {
+          "type": "boolean"
+        },
+        "youtube": {
+          "type": "boolean"
+        }
+      }
+    },
+    "main.Spell": {
+      "type": "object",
+      "properties": {
+        "formula": {
+          "type": "string"
+        },
+        "group_attack": {
+          "type": "boolean"
+        },
+        "group_healing": {
+          "type": "boolean"
+        },
+        "group_support": {
+          "type": "boolean"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "mana": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "premium_only": {
+          "type": "boolean"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "spell_id": {
+          "type": "string"
+        },
+        "type_instant": {
+          "type": "boolean"
+        },
+        "type_rune": {
+          "type": "boolean"
+        }
+      }
+    },
+    "main.SpellData": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "has_rune_information": {
+          "type": "boolean"
+        },
+        "has_spell_information": {
+          "type": "boolean"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rune_information": {
+          "$ref": "#/definitions/main.RuneInformation"
+        },
+        "spell_id": {
+          "type": "string"
+        },
+        "spell_information": {
+          "$ref": "#/definitions/main.SpellInformation"
+        }
+      }
+    },
+    "main.SpellInformation": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        },
+        "city": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cooldown_alone": {
+          "type": "integer"
+        },
+        "cooldown_group": {
+          "type": "integer"
+        },
+        "damage_type": {
+          "type": "string"
+        },
+        "formula": {
+          "type": "string"
+        },
+        "group_attack": {
+          "type": "boolean"
+        },
+        "group_healing": {
+          "type": "boolean"
+        },
+        "group_support": {
+          "type": "boolean"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "mana": {
+          "type": "integer"
+        },
+        "premium_only": {
+          "type": "boolean"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "soul_points": {
+          "type": "integer"
+        },
+        "type_instant": {
+          "type": "boolean"
+        },
+        "type_rune": {
+          "type": "boolean"
+        },
+        "vocation": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "main.SpellInformationResponse": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        },
+        "spells": {
+          "$ref": "#/definitions/main.SpellsContainer"
+        }
+      }
+    },
+    "main.Spells": {
+      "type": "object",
+      "properties": {
+        "spell_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Spell"
+          }
+        },
+        "spells_filter": {
+          "type": "string"
+        }
+      }
+    },
+    "main.SpellsContainer": {
+      "type": "object",
+      "properties": {
+        "spell": {
+          "$ref": "#/definitions/main.SpellData"
+        }
+      }
+    },
+    "main.SpellsOverviewResponse": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        },
+        "spells": {
+          "$ref": "#/definitions/main.Spells"
+        }
+      }
+    },
+    "main.Total": {
+      "type": "object",
+      "properties": {
+        "last_day_killed": {
+          "type": "integer"
+        },
+        "last_day_players_killed": {
+          "type": "integer"
+        },
+        "last_week_killed": {
+          "type": "integer"
+        },
+        "last_week_players_killed": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.World": {
+      "type": "object",
+      "properties": {
+        "battleye_date": {
+          "description": "BattlEye Status: null if since release / else show date?",
+          "type": "string"
+        },
+        "battleye_protected": {
+          "description": "BattlEye Status: true if protected / false if \"Not protected by BattlEye.\"",
+          "type": "boolean"
+        },
+        "creation_date": {
+          "description": "Creation Date: -> convert to YYYY-MM",
+          "type": "string"
+        },
+        "game_world_type": {
+          "description": "Game World Type: regular / experimental / tournament (if Tournament World Type exists)",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location:",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "online_players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.OnlinePlayers"
+          }
+        },
+        "players_online": {
+          "description": "Players Online:",
+          "type": "integer"
+        },
+        "premium_only": {
+          "description": "Premium Type: premium = true / else: false",
+          "type": "boolean"
+        },
+        "pvp_type": {
+          "description": "PvP Type:",
+          "type": "string"
+        },
+        "record_date": {
+          "description": "Online Record:",
+          "type": "string"
+        },
+        "record_players": {
+          "description": "Online Record:",
+          "type": "integer"
+        },
+        "status": {
+          "description": "Status:",
+          "type": "string"
+        },
+        "tournament_world_type": {
+          "description": "Tournament World Type: \"\" (default?) / regular / restricted",
+          "type": "string"
+        },
+        "transfer_type": {
+          "description": "Transfer Type: regular (if not present) / locked / blocked",
+          "type": "string"
+        },
+        "world_quest_titles": {
+          "description": "World Quest Titles:",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "main.WorldResponse": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        },
+        "worlds": {
+          "$ref": "#/definitions/main.Worlds"
+        }
+      }
+    },
+    "main.Worlds": {
+      "type": "object",
+      "properties": {
+        "world": {
+          "$ref": "#/definitions/main.World"
+        }
+      }
+    },
+    "main.WorldsOverviewResponse": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        },
+        "worlds": {
+          "$ref": "#/definitions/main.OverviewWorlds"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
