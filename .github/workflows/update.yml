@@ -24,11 +24,9 @@ jobs:
         run: |
           # set api host to api.tibiadata.com
           cat swagger.json | jq '.host = "api.tibiadata.com"' > swagger.json
-          sed -i 's/host: localhost:8080/host: api.tibiadata.com/g' swagger.yaml
 
           # set scheme for server to only https
           cat swagger.json | jq '.schemes = ["https"]' > swagger.json
-          sed -i 's/- http/- https/g' swagger.yaml
 
           # getting release version from swagger file
           echo "::set-output name=release::$(cat swagger.json | jq -c '.info.version')"
