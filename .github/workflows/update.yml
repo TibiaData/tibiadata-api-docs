@@ -24,10 +24,6 @@ jobs:
           path: docs
           token: ${{ github.GITHUB_TOKEN }}
 
-      - name: debug
-        run: |
-          cat docs/swagger.json
-
       - name: Manipulate swagger.json with custom settings
         id: swagger-manipulation
         run: |
@@ -37,11 +33,7 @@ jobs:
           # set scheme for server to only https
           cat docs/swagger.json | jq '.schemes = ["https"]' > docs/swagger.json
 
-          # getting release version from swagger file
-          echo "::set-output name=release::$(cat docs/swagger.json | jq -c '.info.version')"
-
       - name: Commit swagger.json to repo
         uses: EndBug/add-and-commit@v7
         with:
-          add: "docs/swagger.json"
-          message: "automatic update of swagger.json (release ${{ steps.swagger-manipulation.outputs.release }})"
+          message: automatic update of swagger.json
