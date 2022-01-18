@@ -1,0 +1,40 @@
+name: update
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download latest swagger.json from tibiadata-api-go
+        uses: i3h/download-release-asset@v1.3.2
+        with:
+          owner: TibiaData
+          repo: tibiadata-api-go
+          tag: latest
+          file: swagger.json
+          token: ${{ github.GITHUB_TOKEN }}
+
+      - name: Manipulate swagger files with custom settings
+        id: swagger-manipulation
+        run: |
+          # set api host to api.tibiadata.com
+          cat swagger.json | jq '.host = "api.tibiadata.com"' > swagger.json
+          sed -i 's/host: localhost:8080/host: api.tibiadata.com/g' swagger.yaml
+
+          # set scheme for server to only https
+          cat swagger.json | jq '.schemes = ["https"]' > swagger.json
+          sed -i 's/- http/- https/g' swagger.yaml
+
+          # getting release version from swagger file
+          echo "::set-output name=release::$(cat swagger.json | jq -c '.info.version')"
+
+      - name: Commit swagger files to repo
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: "swagger.*"
+          message: "automatic update of swagger files (release ${{ steps.swagger-manipulation.outputs.release }})"
