@@ -10,6 +10,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Removing old swagger.json file
+        run: |
+          rm docs/swagger.json
+
       - name: Download latest swagger.json from tibiadata-api-go
         uses: i3h/download-release-asset@v1.3.2
         with:
@@ -19,6 +23,10 @@ jobs:
           file: swagger.json
           path: docs
           token: ${{ github.GITHUB_TOKEN }}
+
+      - name: debug
+        run: |
+          cat docs/swagger.json
 
       - name: Manipulate swagger.json with custom settings
         id: swagger-manipulation
