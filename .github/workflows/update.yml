@@ -24,7 +24,7 @@ jobs:
         id: swagger-manipulation
         run: |
           # set api host to api.tibiadata.com
-          contents="$(jq '.host = "dev.tibiadata.com"' docs/swagger.json)" && \
+          contents="$(jq '.host = "api.tibiadata.com"' docs/swagger.json)" && \
           echo "${contents}" > docs/swagger.json
 
           # set scheme for server to only https
