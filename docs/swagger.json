@@ -16,18 +16,13 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v0.4.0"
+    "version": "v0.5.0"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
   "paths": {
     "/v3/characters/character/{character}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all information about one character available",
         "consumes": [
           "application/json"
@@ -60,11 +55,6 @@
     },
     "/v3/creatures": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all creatures listed",
         "consumes": [
           "application/json"
@@ -88,11 +78,6 @@
     },
     "/v3/creatures/creature/{race}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all information about one creature",
         "consumes": [
           "application/json"
@@ -125,11 +110,6 @@
     },
     "/v3/fansites": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "List of all promoted and supported fansites",
         "consumes": [
           "application/json"
@@ -153,11 +133,6 @@
     },
     "/v3/guilds/guild/{guild}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all information about one guild",
         "consumes": [
           "application/json"
@@ -190,11 +165,6 @@
     },
     "/v3/guilds/world/{world}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all guilds on a certain world",
         "consumes": [
           "application/json"
@@ -227,11 +197,6 @@
     },
     "/v3/highscores/world/{world}/{category}/{vocation}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all highscores of tibia",
         "consumes": [
           "application/json"
@@ -276,13 +241,86 @@
         }
       }
     },
-    "/v3/killstatistics/world/{world}": {
+    "/v3/houses/world/{world}/house/{houseid}": {
       "get": {
-        "security": [
+        "description": "Show all information about one house",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "houses"
+        ],
+        "summary": "House view",
+        "parameters": [
           {
-            "ApiKeyAuth": []
+            "type": "string",
+            "description": "The world to show",
+            "name": "world",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "The ID of the house",
+            "name": "houseid",
+            "in": "path",
+            "required": true
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.HouseResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/houses/world/{world}/town/{town}": {
+      "get": {
+        "description": "Show all houses filtered on world and town",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "houses"
+        ],
+        "summary": "List of houses",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The world to show",
+            "name": "world",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "The town to show",
+            "name": "town",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.HousesOverviewResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/killstatistics/world/{world}": {
+      "get": {
         "description": "Show all killstatistics filtered on world",
         "consumes": [
           "application/json"
@@ -315,11 +353,6 @@
     },
     "/v3/news/archive": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show news archive with a filtering on 90 days",
         "consumes": [
           "application/json"
@@ -343,11 +376,6 @@
     },
     "/v3/news/archive/{days}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show news archive with a filtering option on days",
         "consumes": [
           "application/json"
@@ -380,11 +408,6 @@
     },
     "/v3/news/id/{news_id}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show one news entry",
         "consumes": [
           "application/json"
@@ -417,11 +440,6 @@
     },
     "/v3/news/latest": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show newslist with filtering on articles and news of last 90 days",
         "consumes": [
           "application/json"
@@ -445,11 +463,6 @@
     },
     "/v3/news/newsticker": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show news of type news tickers of last 90 days",
         "consumes": [
           "application/json"
@@ -473,11 +486,6 @@
     },
     "/v3/spells": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all spells",
         "consumes": [
           "application/json"
@@ -501,11 +509,6 @@
     },
     "/v3/spells/spell/{spell}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all information about one spell",
         "consumes": [
           "application/json"
@@ -538,11 +541,6 @@
     },
     "/v3/worlds": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all worlds of Tibia",
         "consumes": [
           "application/json"
@@ -566,11 +564,6 @@
     },
     "/v3/worlds/world/{world}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "description": "Show all information about one world",
         "consumes": [
           "application/json"
@@ -1234,6 +1227,121 @@
         }
       }
     },
+    "main.House": {
+      "type": "object",
+      "properties": {
+        "beds": {
+          "type": "integer"
+        },
+        "houseid": {
+          "type": "integer"
+        },
+        "img": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rent": {
+          "type": "integer"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/definitions/main.HouseStatus"
+        },
+        "town": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "world": {
+          "type": "string"
+        }
+      }
+    },
+    "main.HouseAuction": {
+      "type": "object",
+      "properties": {
+        "auction_end": {
+          "type": "string"
+        },
+        "auction_ongoing": {
+          "type": "boolean"
+        },
+        "current_bid": {
+          "type": "integer"
+        },
+        "current_bidder": {
+          "type": "string"
+        }
+      }
+    },
+    "main.HouseRental": {
+      "type": "object",
+      "properties": {
+        "moving_date": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "owner_sex": {
+          "type": "string"
+        },
+        "paid_until": {
+          "type": "string"
+        },
+        "transfer_accept": {
+          "type": "boolean"
+        },
+        "transfer_price": {
+          "type": "integer"
+        },
+        "transfer_receiver": {
+          "type": "string"
+        }
+      }
+    },
+    "main.HouseResponse": {
+      "type": "object",
+      "properties": {
+        "house": {
+          "$ref": "#/definitions/main.House"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.HouseStatus": {
+      "type": "object",
+      "properties": {
+        "auction": {
+          "$ref": "#/definitions/main.HouseAuction"
+        },
+        "is_auctioned": {
+          "type": "boolean"
+        },
+        "is_moving": {
+          "type": "boolean"
+        },
+        "is_rented": {
+          "type": "boolean"
+        },
+        "is_transfering": {
+          "type": "boolean"
+        },
+        "original": {
+          "type": "string"
+        },
+        "rental": {
+          "$ref": "#/definitions/main.HouseRental"
+        }
+      }
+    },
     "main.Houses": {
       "type": "object",
       "properties": {
@@ -1248,6 +1356,77 @@
         },
         "town": {
           "type": "string"
+        }
+      }
+    },
+    "main.HousesAction": {
+      "type": "object",
+      "properties": {
+        "current_bid": {
+          "type": "integer"
+        },
+        "time_left": {
+          "type": "string"
+        }
+      }
+    },
+    "main.HousesHouse": {
+      "type": "object",
+      "properties": {
+        "auction": {
+          "$ref": "#/definitions/main.HousesAction"
+        },
+        "auctioned": {
+          "type": "boolean"
+        },
+        "house_id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rent": {
+          "type": "integer"
+        },
+        "rented": {
+          "type": "boolean"
+        },
+        "size": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.HousesHouses": {
+      "type": "object",
+      "properties": {
+        "guildhall_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.HousesHouse"
+          }
+        },
+        "house_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.HousesHouse"
+          }
+        },
+        "town": {
+          "type": "string"
+        },
+        "world": {
+          "type": "string"
+        }
+      }
+    },
+    "main.HousesOverviewResponse": {
+      "type": "object",
+      "properties": {
+        "houses": {
+          "$ref": "#/definitions/main.HousesHouses"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
         }
       }
     },
@@ -1915,13 +2094,6 @@
           "$ref": "#/definitions/main.OverviewWorlds"
         }
       }
-    }
-  },
-  "securityDefinitions": {
-    "ApiKeyAuth": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header"
     }
   }
 }
