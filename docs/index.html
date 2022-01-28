@@ -7,17 +7,50 @@
     <title>TibiaData API docs | swagger documentation</title>
 
     <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
-    <style>
-        rapi-doc {
-            width: 100%;
-        }
-    </style>
 </head>
 
 <body>
-    <rapi-doc spec-url="https://docs.tibiadata.com/swagger.json" render-style="read" theme="light" schema-style="table"
-        show-header="false" server-url="https://dev.tibiadata.com" default-api-server="https://api.tibiadata.com"
-        schema-expand-level="2">
+    <rapi-doc id="thedoc" spec-url="https://docs.tibiadata.com/swagger.json" render-style="view" theme="light"
+        schema-style="table" show-header="false" server-url="https://dev.tibiadata.com"
+        default-api-server="https://api.tibiadata.com" schema-expand-level="2">
+
+        <p
+            style="height: 35px; margin-top: 0px; margin-bottom: 15px; padding-top: 15px; font-size: 14px; background-color: #205081; color:#fff; text-align:center;">
+            <b>
+                <a href="https://docs.tibiadata.com"
+                    style="color: inherit; text-decoration: none;">docs.tibiadata.com</a>
+            </b> | go to <a href="https://tibiadata.com" target="_blank"
+                style="color: inherit; text-decoration: none;">tibiadata.com</a>
+        </p>
+
+        <span slot="overview">
+            <div class="sub-title" style="padding-top: 20px; font-size: 20px;">OVERVIEW</div>
+            <p style="font-size: 14px;">TibiaData API is a RESTful API providing information in JSON format
+                containing information from Tibia's official homepage tibia.com, so you can build your own small tools.
+            </p>
+            <p style="font-size: 14px;">The source is available on <a
+                    href="https://github.com/TibiaData/tibiadata-api-go" target="_blank"
+                    style="color: #47AFE8;">GitHub</a> | Join our Discord server by going <a
+                    href="https://discord.gg/zpAbn9J8WW" target="_blank" style="color: #47AFE8;">here</a>
+            </p>
+            <hr />
+            <p style="font-size: 14px;">
+                The swagger document shown below can be found <a href="https://docs.tibiadata.com/swagger.json"
+                    target="_blank" style="color: #47AFE8;">here</a> | Generic swagger document can be found in the <a
+                    href="https://github.com/TibiaData/tibiadata-api-go/releases" target="_blank"
+                    style="color: #47AFE8;">GitHub release</a>.
+            </p>
+        </span>
+
+        <p slot="footer" style="font-size: 85%; color: #777; text-align:center;">
+            Developed by <a href="https://github.com/tobiasehlert" target="_blank">Tobias Lindberg</a> since 2016. All
+            rights reserved. Our data is based on <a href="https://www.tibia.com" target="_blank">tibia.com</a>, the
+            only official Tibia website.<br />
+            Tibia is a registered trademark of <a href="https://www.cipsoft.com/en/" target="_blank">CipSoft GmbH</a>.
+            Tibia and all products related to Tibia are copyright by
+            <a href="https://www.cipsoft.com/en/" target="_blank">CipSoft GmbH</a>.
+        </p>
+
     </rapi-doc>
 
 </body>
