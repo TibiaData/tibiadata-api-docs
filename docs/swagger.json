@@ -16,12 +16,12 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v0.5.1"
+    "version": "v0.6.0"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
   "paths": {
-    "/v3/characters/character/{character}": {
+    "/v3/character/{name}": {
       "get": {
         "description": "Show all information about one character available",
         "consumes": [
@@ -37,8 +37,9 @@
         "parameters": [
           {
             "type": "string",
+            "x-example": "Trollefar",
             "description": "The character name",
-            "name": "character",
+            "name": "name",
             "in": "path",
             "required": true
           }
@@ -48,6 +49,39 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/main.CharacterResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v3/creature/{race}": {
+      "get": {
+        "description": "Show all information about one creature",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "creatures"
+        ],
+        "summary": "Show one creature",
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "nightmare",
+            "description": "The race of creature",
+            "name": "race",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.CreatureResponse"
             }
           }
         }
@@ -76,38 +110,6 @@
         }
       }
     },
-    "/v3/creatures/creature/{race}": {
-      "get": {
-        "description": "Show all information about one creature",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "creatures"
-        ],
-        "summary": "Show one creature",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "The race of creature",
-            "name": "race",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/main.CreatureResponse"
-            }
-          }
-        }
-      }
-    },
     "/v3/fansites": {
       "get": {
         "description": "List of all promoted and supported fansites",
@@ -131,7 +133,7 @@
         }
       }
     },
-    "/v3/guilds/guild/{guild}": {
+    "/v3/guild/{name}": {
       "get": {
         "description": "Show all information about one guild",
         "consumes": [
@@ -147,8 +149,9 @@
         "parameters": [
           {
             "type": "string",
+            "x-example": "Elysium",
             "description": "The name of guild",
-            "name": "guild",
+            "name": "name",
             "in": "path",
             "required": true
           }
@@ -163,7 +166,7 @@
         }
       }
     },
-    "/v3/guilds/world/{world}": {
+    "/v3/guilds/{world}": {
       "get": {
         "description": "Show all guilds on a certain world",
         "consumes": [
@@ -179,6 +182,7 @@
         "parameters": [
           {
             "type": "string",
+            "x-example": "Antica",
             "description": "The world",
             "name": "world",
             "in": "path",
@@ -195,7 +199,7 @@
         }
       }
     },
-    "/v3/highscores/world/{world}/{category}/{vocation}": {
+    "/v3/highscores/{world}/{category}/{vocation}": {
       "get": {
         "description": "Show all highscores of tibia",
         "consumes": [
@@ -211,21 +215,50 @@
         "parameters": [
           {
             "type": "string",
-            "description": "The world (default: all)",
+            "default": "all",
+            "x-example": "Antica",
+            "description": "The world",
             "name": "world",
             "in": "path",
             "required": true
           },
           {
+            "enum": [
+              "achievements",
+              "axefighting",
+              "charmpoints",
+              "clubfighting",
+              "distancefighting",
+              "experience",
+              "fishing",
+              "fistfighting",
+              "goshnarstaint",
+              "loyaltypoints",
+              "magiclevel",
+              "shielding",
+              "swordfighting",
+              "dromescore"
+            ],
             "type": "string",
-            "description": "The category (default: experience)",
+            "default": "experience",
+            "x-example": "fishing",
+            "description": "The category",
             "name": "category",
             "in": "path",
             "required": true
           },
           {
+            "enum": [
+              "all",
+              "knights",
+              "paladins",
+              "sorcerers",
+              "druids"
+            ],
             "type": "string",
-            "description": "The vocation (default: all)",
+            "default": "all",
+            "x-example": "knights",
+            "description": "The vocation",
             "name": "vocation",
             "in": "path",
             "required": true
@@ -241,7 +274,7 @@
         }
       }
     },
-    "/v3/houses/world/{world}/house/{houseid}": {
+    "/v3/house/{world}/{house_id}": {
       "get": {
         "description": "Show all information about one house",
         "consumes": [
@@ -257,6 +290,7 @@
         "parameters": [
           {
             "type": "string",
+            "x-example": "Antica",
             "description": "The world to show",
             "name": "world",
             "in": "path",
@@ -264,8 +298,9 @@
           },
           {
             "type": "integer",
+            "x-example": "35019",
             "description": "The ID of the house",
-            "name": "houseid",
+            "name": "house_id",
             "in": "path",
             "required": true
           }
@@ -280,7 +315,7 @@
         }
       }
     },
-    "/v3/houses/world/{world}/town/{town}": {
+    "/v3/houses/{world}/{town}": {
       "get": {
         "description": "Show all houses filtered on world and town",
         "consumes": [
@@ -296,6 +331,7 @@
         "parameters": [
           {
             "type": "string",
+            "x-example": "Antica",
             "description": "The world to show",
             "name": "world",
             "in": "path",
@@ -303,6 +339,7 @@
           },
           {
             "type": "string",
+            "x-example": "Venore",
             "description": "The town to show",
             "name": "town",
             "in": "path",
@@ -319,7 +356,7 @@
         }
       }
     },
-    "/v3/killstatistics/world/{world}": {
+    "/v3/killstatistics/{world}": {
       "get": {
         "description": "Show all killstatistics filtered on world",
         "consumes": [
@@ -335,6 +372,7 @@
         "parameters": [
           {
             "type": "string",
+            "x-example": "Antica",
             "description": "The world to show",
             "name": "world",
             "in": "path",
@@ -389,7 +427,10 @@
         "summary": "Show news archive (with days filter)",
         "parameters": [
           {
+            "minimum": 1,
             "type": "integer",
+            "default": 90,
+            "x-example": "30",
             "description": "The number of days to show",
             "name": "days",
             "in": "path",
@@ -422,6 +463,7 @@
         "parameters": [
           {
             "type": "integer",
+            "x-example": "6512",
             "description": "The ID of news entry",
             "name": "news_id",
             "in": "path",
@@ -484,6 +526,39 @@
         }
       }
     },
+    "/v3/spell/{spell_id}": {
+      "get": {
+        "description": "Show all information about one spell",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "spells"
+        ],
+        "summary": "Show one spell",
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "stronghaste",
+            "description": "The name of spell",
+            "name": "spell_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.SpellInformationResponse"
+            }
+          }
+        }
+      }
+    },
     "/v3/spells": {
       "get": {
         "description": "Show all spells",
@@ -507,9 +582,9 @@
         }
       }
     },
-    "/v3/spells/spell/{spell}": {
+    "/v3/world/{name}": {
       "get": {
-        "description": "Show all information about one spell",
+        "description": "Show all information about one world",
         "consumes": [
           "application/json"
         ],
@@ -517,14 +592,15 @@
           "application/json"
         ],
         "tags": [
-          "spells"
+          "worlds"
         ],
-        "summary": "Show one spell",
+        "summary": "Show one world",
         "parameters": [
           {
             "type": "string",
-            "description": "The name of spell",
-            "name": "spell",
+            "x-example": "Antica",
+            "description": "The name of world",
+            "name": "name",
             "in": "path",
             "required": true
           }
@@ -533,7 +609,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/main.SpellInformationResponse"
+              "$ref": "#/definitions/main.WorldResponse"
             }
           }
         }
@@ -557,38 +633,6 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/main.WorldsOverviewResponse"
-            }
-          }
-        }
-      }
-    },
-    "/v3/worlds/world/{world}": {
-      "get": {
-        "description": "Show all information about one world",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "worlds"
-        ],
-        "summary": "Show one world",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "The name of world",
-            "name": "world",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/main.WorldResponse"
             }
           }
         }
@@ -753,7 +797,10 @@
           "$ref": "#/definitions/main.Character"
         },
         "deaths": {
-          "$ref": "#/definitions/main.Deaths"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Deaths"
+          }
         },
         "other_characters": {
           "type": "array",
@@ -890,7 +937,7 @@
         }
       }
     },
-    "main.DeathEntries": {
+    "main.Deaths": {
       "type": "object",
       "properties": {
         "assists": {
@@ -913,21 +960,6 @@
         },
         "time": {
           "type": "string"
-        }
-      }
-    },
-    "main.Deaths": {
-      "type": "object",
-      "properties": {
-        "death_entries": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/main.DeathEntries"
-          }
-        },
-        "truncated": {
-          "description": "deathlist can be truncated.. but we don't have logic for that atm",
-          "type": "boolean"
         }
       }
     },
