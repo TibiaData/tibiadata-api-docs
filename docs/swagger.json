@@ -16,7 +16,7 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v3.1.0"
+    "version": "v3.2.0"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
@@ -1396,6 +1396,9 @@
       "properties": {
         "current_bid": {
           "type": "integer"
+        },
+        "finished": {
+          "type": "boolean"
         },
         "time_left": {
           "type": "string"
