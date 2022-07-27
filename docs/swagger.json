@@ -16,11 +16,34 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v3.2.2"
+    "version": "v3.3.0"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
   "paths": {
+    "/v3/boostablebosses": {
+      "get": {
+        "description": "Show all boostable bosses listed",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "boostable bosses"
+        ],
+        "summary": "List of boostable bosses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.BoostableBossesOverviewResponse"
+            }
+          }
+        }
+      }
+    },
     "/v3/character/{name}": {
       "get": {
         "description": "Show all information about one character available",
@@ -679,6 +702,31 @@
         },
         "secret": {
           "type": "boolean"
+        }
+      }
+    },
+    "main.BoostableBossesContainer": {
+      "type": "object",
+      "properties": {
+        "boostable_boss_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.OverviewBoostableBoss"
+          }
+        },
+        "boosted": {
+          "$ref": "#/definitions/main.OverviewBoostableBoss"
+        }
+      }
+    },
+    "main.BoostableBossesOverviewResponse": {
+      "type": "object",
+      "properties": {
+        "boostable_bosses": {
+          "$ref": "#/definitions/main.BoostableBossesContainer"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
         }
       }
     },
@@ -1647,6 +1695,20 @@
           "type": "boolean"
         },
         "world": {
+          "type": "string"
+        }
+      }
+    },
+    "main.OverviewBoostableBoss": {
+      "type": "object",
+      "properties": {
+        "featured": {
+          "type": "boolean"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
           "type": "string"
         }
       }
