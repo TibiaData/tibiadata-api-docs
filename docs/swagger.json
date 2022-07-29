@@ -16,7 +16,7 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v3.3.0"
+    "version": "v3.3.1"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
@@ -260,7 +260,8 @@
               "magiclevel",
               "shielding",
               "swordfighting",
-              "dromescore"
+              "dromescore",
+              "bosspoints"
             ],
             "type": "string",
             "default": "experience",
