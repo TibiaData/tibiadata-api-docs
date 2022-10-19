@@ -16,7 +16,7 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v3.4.1"
+    "version": "v3.5.1"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
@@ -222,7 +222,7 @@
         }
       }
     },
-    "/v3/highscores/{world}/{category}/{vocation}": {
+    "/v3/highscores/{world}/{category}/{vocation}/{page}": {
       "get": {
         "description": "Show all highscores of tibia",
         "consumes": [
@@ -284,6 +284,17 @@
             "x-example": "knights",
             "description": "The vocation",
             "name": "vocation",
+            "in": "path",
+            "required": true
+          },
+          {
+            "maximum": 20,
+            "minimum": 1,
+            "type": "integer",
+            "default": 1,
+            "x-example": "1",
+            "description": "The current page",
+            "name": "page",
             "in": "path",
             "required": true
           }
@@ -1274,6 +1285,23 @@
         }
       }
     },
+    "main.HighscorePage": {
+      "type": "object",
+      "properties": {
+        "current_page": {
+          "description": "Current page",
+          "type": "integer"
+        },
+        "total_pages": {
+          "description": "Total page count",
+          "type": "integer"
+        },
+        "total_records": {
+          "description": "Total highscore records",
+          "type": "integer"
+        }
+      }
+    },
     "main.Highscores": {
       "type": "object",
       "properties": {
@@ -1288,6 +1316,9 @@
           "items": {
             "$ref": "#/definitions/main.Highscore"
           }
+        },
+        "highscore_page": {
+          "$ref": "#/definitions/main.HighscorePage"
         },
         "vocation": {
           "type": "string"
