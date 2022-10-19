@@ -34,7 +34,7 @@ jobs:
           echo "${contents}" > docs/swagger.json
 
           # getting release version from swagger file
-          echo "::set-output name=release::$(cat docs/swagger.json | jq -r .info.version)"
+          echo release=$(cat docs/swagger.json | jq -r .info.version) >> $GITHUB_OUTPUT
 
       - name: Commit swagger.json to repo
         uses: EndBug/add-and-commit@v9
