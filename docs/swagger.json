@@ -16,7 +16,7 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v3.5.1"
+    "version": "v3.6.0"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
