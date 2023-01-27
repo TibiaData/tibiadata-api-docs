@@ -18,6 +18,8 @@
                     .attr('spec-url', 'https://docs.tibiadata.com/swagger-dev.json')
                     .attr('server-url', 'https://api.tibiadata.com')
                     .attr('default-api-server', 'https://dev.tibiadata.com')
+                $('#dev-note')
+                    .css("display", "block")
             });
         }
 
@@ -76,6 +78,15 @@
                 found in the <a href="https://github.com/TibiaData/tibiadata-api-go/releases" target="_blank"
                     style="color: #47AFE8;">GitHub release</a>
             </p>
+        </span>
+
+        <span slot="servers">
+            <div id="dev-note" style="display: none;">
+                <p style="font-size: 14px;">
+                    <strong>Note:</strong><br />
+                    You are currently using the <strong>dev</strong> docs and API server.
+                </p>
+            </div>
         </span>
 
         <p slot="footer" style="font-size: 85%; color: #777; text-align:center;">
