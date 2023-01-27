@@ -25,13 +25,22 @@ jobs:
       - name: Manipulate swagger.json with custom settings
         id: swagger-manipulation
         run: |
-          # set api host to api.tibiadata.com
-          contents="$(jq '.host = "api.tibiadata.com"' docs/swagger.json)" && \
-          echo "${contents}" > docs/swagger.json
-
           # set scheme for server to only https
           contents="$(jq '.schemes = ["https"]' docs/swagger.json)" && \
           echo "${contents}" > docs/swagger.json
+
+          # making copy for new synced dev doc
+          cp docs/swagger.json docs/swagger-dev.json
+
+          # set api hosts
+          contents_api="$(jq '.host = "api.tibiadata.com"' docs/swagger.json)" && \
+          contents_dev="$(jq '.host = "dev.tibiadata.com"' docs/swagger-dev.json)" && \
+          echo "${contents_api}" > docs/swagger.json
+          echo "${contents_dev}" > docs/swagger-dev.json
+
+          # set version for dev to edge
+          contents="$(jq '.info.version = "edge"' docs/swagger-dev.json)" && \
+          echo "${contents}" > docs/swagger-dev.json
 
           # getting release version from swagger file
           echo release=$(cat docs/swagger.json | jq -r .info.version) >> $GITHUB_OUTPUT
@@ -39,5 +48,5 @@ jobs:
       - name: Commit swagger.json to repo
         uses: EndBug/add-and-commit@v9
         with:
-          add: docs/swagger.json
+          add: docs/swagger.json docs/swagger-dev.json
           message: automatic update of swagger.json (release ${{ steps.swagger-manipulation.outputs.release }})

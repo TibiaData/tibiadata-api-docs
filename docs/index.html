@@ -9,6 +9,31 @@
 
     <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.slim.js" integrity="sha512-M3zrhxXOYQaeBJYLBv7DsKg2BWwSubf6htVyjSkjc9kPqx7Se98+q1oYyBJn2JZXzMaZvUkB8QzKAmeVfzj9ug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        // override spec-url if localStorage says so
+        if (localStorage.getItem('swagger_load_dev') == 'true') {
+            $(document).ready(function () {
+                $('rapi-doc')
+                    .attr('spec-url', 'https://docs.tibiadata.com/swagger-dev.json')
+                    .attr('server-url', 'https://api.tibiadata.com')
+                    .attr('default-api-server', 'https://dev.tibiadata.com')
+            });
+        }
+
+        // trigger on selection of API server and store flag in localStorage
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let docEl = document.getElementById("thedoc");
+            docEl.addEventListener('api-server-change', (e) => {
+                localStorage.swagger_load_dev = false
+                if (e.detail.selectedServer.computedUrl == "https://dev.tibiadata.com") {
+                    localStorage.swagger_load_dev = true
+                }
+                location.reload();
+            });
+        })
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ERQQZELMQ"></script>
     <script>
@@ -23,7 +48,7 @@
 <body>
     <rapi-doc id="thedoc" spec-url="https://docs.tibiadata.com/swagger.json" render-style="view" theme="light"
         schema-style="table" show-header="false" server-url="https://dev.tibiadata.com"
-        default-api-server="https://api.tibiadata.com" schema-expand-level="2">
+        default-api-server="https://api.tibiadata.com">
 
         <p
             style="height: 35px; margin-top: 0px; margin-bottom: 15px; padding-top: 15px; font-size: 14px; background-color: #205081; color:#fff; text-align:center;">
