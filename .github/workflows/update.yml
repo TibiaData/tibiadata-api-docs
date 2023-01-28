@@ -3,7 +3,6 @@ name: update
 on:
   repository_dispatch:
     types: [tibiadata-api-go-release]
-  workflow_dispatch:
 
 jobs:
   update:
@@ -12,18 +11,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Download latest swagger.json from tibiadata-api-go
+      - name: Download swagger.json from tibiadata-api-go release
         uses: i3h/download-release-asset@v1
         with:
           owner: TibiaData
           repo: tibiadata-api-go
-          tag: latest
+          tag: ${{ github.event.client_payload.tag_name }}
           file: swagger.json
           path: docs
           token: ${{ github.GITHUB_TOKEN }}
 
-      - name: Manipulate swagger.json with custom settings
-        id: swagger-manipulation
+      - name: Manipulate docs/swagger files with custom settings
         run: |
           # set scheme for server to only https
           contents="$(jq '.schemes = ["https"]' docs/swagger.json)" && \
@@ -42,11 +40,8 @@ jobs:
           contents="$(jq '.info.version = "edge"' docs/swagger-dev.json)" && \
           echo "${contents}" > docs/swagger-dev.json
 
-          # getting release version from swagger file
-          echo release=$(cat docs/swagger.json | jq -r .info.version) >> $GITHUB_OUTPUT
-
-      - name: Commit swagger.json to repo
+      - name: Commit docs/swagger files to repo
         uses: EndBug/add-and-commit@v9
         with:
           add: docs/swagger.json docs/swagger-dev.json
-          message: automatic update of swagger.json (release ${{ steps.swagger-manipulation.outputs.release }})
+          message: automatic update of docs/swagger files (release ${{ github.event.client_payload.tag_name }})
