@@ -9,7 +9,7 @@
     "termsOfService": "https://tibiadata.com/terms/",
     "contact": {
       "name": "TibiaData",
-      "url": "https://www.tibiadata.com/contact/",
+      "url": "https://tibiadata.com/contact/",
       "email": "tobias@tibiadata.com"
     },
     "license": {
@@ -22,6 +22,677 @@
   "basePath": "/",
   "paths": {
     "/v3/boostablebosses": {
+      "get": {
+        "description": "Show all boostable bosses listed",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "boostable bosses"
+        ],
+        "summary": "List of boostable bosses",
+        "deprecated": true,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.BoostableBossesOverviewResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/character/{name}": {
+      "get": {
+        "description": "Show all information about one character available",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "characters"
+        ],
+        "summary": "Show one character",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "Trollefar",
+            "description": "The character name",
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.CharacterResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/creature/{race}": {
+      "get": {
+        "description": "Show all information about one creature",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "creatures"
+        ],
+        "summary": "Show one creature",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "nightmare",
+            "description": "The race of creature",
+            "name": "race",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.CreatureResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/creatures": {
+      "get": {
+        "description": "Show all creatures listed",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "creatures"
+        ],
+        "summary": "List of creatures",
+        "deprecated": true,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.CreaturesOverviewResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/fansites": {
+      "get": {
+        "description": "List of all promoted and supported fansites",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "fansites"
+        ],
+        "summary": "Promoted and supported fansites",
+        "deprecated": true,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.FansitesResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/guild/{name}": {
+      "get": {
+        "description": "Show all information about one guild",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "guilds"
+        ],
+        "summary": "Show one guild",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "Elysium",
+            "description": "The name of guild",
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.GuildResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/guilds/{world}": {
+      "get": {
+        "description": "Show all guilds on a certain world",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "guilds"
+        ],
+        "summary": "List all guilds from a world",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "Antica",
+            "description": "The world",
+            "name": "world",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.GuildsOverviewResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/highscores/{world}/{category}/{vocation}/{page}": {
+      "get": {
+        "description": "Show all highscores of tibia",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "highscores"
+        ],
+        "summary": "Highscores of tibia",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "default": "all",
+            "x-example": "Antica",
+            "description": "The world",
+            "name": "world",
+            "in": "path",
+            "required": true
+          },
+          {
+            "enum": [
+              "achievements",
+              "axefighting",
+              "charmpoints",
+              "clubfighting",
+              "distancefighting",
+              "experience",
+              "fishing",
+              "fistfighting",
+              "goshnarstaint",
+              "loyaltypoints",
+              "magiclevel",
+              "shielding",
+              "swordfighting",
+              "dromescore",
+              "bosspoints"
+            ],
+            "type": "string",
+            "default": "experience",
+            "x-example": "fishing",
+            "description": "The category",
+            "name": "category",
+            "in": "path",
+            "required": true
+          },
+          {
+            "enum": [
+              "all",
+              "knights",
+              "paladins",
+              "sorcerers",
+              "druids"
+            ],
+            "type": "string",
+            "default": "all",
+            "x-example": "knights",
+            "description": "The vocation",
+            "name": "vocation",
+            "in": "path",
+            "required": true
+          },
+          {
+            "minimum": 1,
+            "type": "integer",
+            "default": 1,
+            "x-example": "1",
+            "description": "The current page",
+            "name": "page",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.HighscoresResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/house/{world}/{house_id}": {
+      "get": {
+        "description": "Show all information about one house",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "houses"
+        ],
+        "summary": "House view",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "Antica",
+            "description": "The world to show",
+            "name": "world",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "x-example": "35019",
+            "description": "The ID of the house",
+            "name": "house_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.HouseResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/houses/{world}/{town}": {
+      "get": {
+        "description": "Show all houses filtered on world and town",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "houses"
+        ],
+        "summary": "List of houses",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "Antica",
+            "description": "The world to show",
+            "name": "world",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-example": "Venore",
+            "description": "The town to show",
+            "name": "town",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.HousesOverviewResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/killstatistics/{world}": {
+      "get": {
+        "description": "Show all killstatistics filtered on world",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "killstatistics"
+        ],
+        "summary": "The killstatistics",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "Antica",
+            "description": "The world to show",
+            "name": "world",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.KillStatisticsResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/archive": {
+      "get": {
+        "description": "Show news archive with a filtering on 90 days",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show news archive (90 days)",
+        "deprecated": true,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsListResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/archive/{days}": {
+      "get": {
+        "description": "Show news archive with a filtering option on days",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show news archive (with days filter)",
+        "deprecated": true,
+        "parameters": [
+          {
+            "minimum": 1,
+            "type": "integer",
+            "default": 90,
+            "x-example": "30",
+            "description": "The number of days to show",
+            "name": "days",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsListResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/id/{news_id}": {
+      "get": {
+        "description": "Show one news entry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show one news entry",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "integer",
+            "x-example": "6512",
+            "description": "The ID of news entry",
+            "name": "news_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/latest": {
+      "get": {
+        "description": "Show newslist with filtering on articles and news of last 90 days",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show newslist (90 days)",
+        "deprecated": true,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsListResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/news/newsticker": {
+      "get": {
+        "description": "Show news of type news tickers of last 90 days",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "news"
+        ],
+        "summary": "Show news tickers (90 days)",
+        "deprecated": true,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.NewsListResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/spell/{spell_id}": {
+      "get": {
+        "description": "Show all information about one spell",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "spells"
+        ],
+        "summary": "Show one spell",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "stronghaste",
+            "description": "The name of spell",
+            "name": "spell_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.SpellInformationResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/spells": {
+      "get": {
+        "description": "Show all spells",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "spells"
+        ],
+        "summary": "List all spells",
+        "deprecated": true,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.SpellsOverviewResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/world/{name}": {
+      "get": {
+        "description": "Show all information about one world",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "worlds"
+        ],
+        "summary": "Show one world",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "string",
+            "x-example": "Antica",
+            "description": "The name of world",
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.WorldResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v3/worlds": {
+      "get": {
+        "description": "Show all worlds of Tibia",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "worlds"
+        ],
+        "summary": "List of all worlds",
+        "deprecated": true,
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.WorldsOverviewResponseV3"
+            }
+          }
+        }
+      }
+    },
+    "/v4/boostablebosses": {
       "get": {
         "description": "Show all boostable bosses listed",
         "consumes": [
@@ -62,7 +733,7 @@
         }
       }
     },
-    "/v3/character/{name}": {
+    "/v4/character/{name}": {
       "get": {
         "description": "Show all information about one character available",
         "consumes": [
@@ -113,7 +784,7 @@
         }
       }
     },
-    "/v3/creature/{race}": {
+    "/v4/creature/{race}": {
       "get": {
         "description": "Show all information about one creature",
         "consumes": [
@@ -164,7 +835,7 @@
         }
       }
     },
-    "/v3/creatures": {
+    "/v4/creatures": {
       "get": {
         "description": "Show all creatures listed",
         "consumes": [
@@ -205,7 +876,7 @@
         }
       }
     },
-    "/v3/fansites": {
+    "/v4/fansites": {
       "get": {
         "description": "List of all promoted and supported fansites",
         "consumes": [
@@ -246,7 +917,7 @@
         }
       }
     },
-    "/v3/guild/{name}": {
+    "/v4/guild/{name}": {
       "get": {
         "description": "Show all information about one guild",
         "consumes": [
@@ -297,7 +968,7 @@
         }
       }
     },
-    "/v3/guilds/{world}": {
+    "/v4/guilds/{world}": {
       "get": {
         "description": "Show all guilds on a certain world",
         "consumes": [
@@ -348,7 +1019,7 @@
         }
       }
     },
-    "/v3/highscores/{world}/{category}/{vocation}/{page}": {
+    "/v4/highscores/{world}/{category}/{vocation}/{page}": {
       "get": {
         "description": "Show all highscores of tibia",
         "consumes": [
@@ -414,7 +1085,6 @@
             "required": true
           },
           {
-            "maximum": 20,
             "minimum": 1,
             "type": "integer",
             "default": 1,
@@ -453,7 +1123,7 @@
         }
       }
     },
-    "/v3/house/{world}/{house_id}": {
+    "/v4/house/{world}/{house_id}": {
       "get": {
         "description": "Show all information about one house",
         "consumes": [
@@ -512,7 +1182,7 @@
         }
       }
     },
-    "/v3/houses/{world}/{town}": {
+    "/v4/houses/{world}/{town}": {
       "get": {
         "description": "Show all houses filtered on world and town",
         "consumes": [
@@ -571,7 +1241,7 @@
         }
       }
     },
-    "/v3/killstatistics/{world}": {
+    "/v4/killstatistics/{world}": {
       "get": {
         "description": "Show all killstatistics filtered on world",
         "consumes": [
@@ -622,7 +1292,7 @@
         }
       }
     },
-    "/v3/news/archive": {
+    "/v4/news/archive": {
       "get": {
         "description": "Show news archive with a filtering on 90 days",
         "consumes": [
@@ -663,7 +1333,7 @@
         }
       }
     },
-    "/v3/news/archive/{days}": {
+    "/v4/news/archive/{days}": {
       "get": {
         "description": "Show news archive with a filtering option on days",
         "consumes": [
@@ -716,7 +1386,7 @@
         }
       }
     },
-    "/v3/news/id/{news_id}": {
+    "/v4/news/id/{news_id}": {
       "get": {
         "description": "Show one news entry",
         "consumes": [
@@ -767,7 +1437,7 @@
         }
       }
     },
-    "/v3/news/latest": {
+    "/v4/news/latest": {
       "get": {
         "description": "Show newslist with filtering on articles and news of last 90 days",
         "consumes": [
@@ -808,7 +1478,7 @@
         }
       }
     },
-    "/v3/news/newsticker": {
+    "/v4/news/newsticker": {
       "get": {
         "description": "Show news of type news tickers of last 90 days",
         "consumes": [
@@ -849,7 +1519,7 @@
         }
       }
     },
-    "/v3/spell/{spell_id}": {
+    "/v4/spell/{spell_id}": {
       "get": {
         "description": "Show all information about one spell",
         "consumes": [
@@ -900,7 +1570,7 @@
         }
       }
     },
-    "/v3/spells": {
+    "/v4/spells": {
       "get": {
         "description": "Show all spells",
         "consumes": [
@@ -941,7 +1611,7 @@
         }
       }
     },
-    "/v3/world/{name}": {
+    "/v4/world/{name}": {
       "get": {
         "description": "Show all information about one world",
         "consumes": [
@@ -992,7 +1662,7 @@
         }
       }
     },
-    "/v3/worlds": {
+    "/v4/worlds": {
       "get": {
         "description": "Show all worlds of Tibia",
         "consumes": [
@@ -1035,16 +1705,36 @@
     }
   },
   "definitions": {
+    "main.APIDetails": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "description": "The API GitHub commit sha.",
+          "type": "string"
+        },
+        "release": {
+          "description": "The API release currently running.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The API major version currently running.",
+          "type": "integer"
+        }
+      }
+    },
     "main.AccountBadges": {
       "type": "object",
       "properties": {
         "description": {
+          "description": "The description of the badge.",
           "type": "string"
         },
         "icon_url": {
+          "description": "The URL to the badge's icon.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the badge.",
           "type": "string"
         }
       }
@@ -1053,12 +1743,15 @@
       "type": "object",
       "properties": {
         "created": {
+          "description": "The account's date of creation.",
           "type": "string"
         },
         "loyalty_title": {
+          "description": "The account's loyalty title.",
           "type": "string"
         },
         "position": {
+          "description": "The account's special position.",
           "type": "string"
         }
       }
@@ -1067,12 +1760,15 @@
       "type": "object",
       "properties": {
         "grade": {
+          "description": "The grade/stars of the achievement.",
           "type": "integer"
         },
         "name": {
+          "description": "The name of the achievement.",
           "type": "string"
         },
         "secret": {
+          "description": "Whether it is a secret achievement or not.",
           "type": "boolean"
         }
       }
@@ -1081,13 +1777,19 @@
       "type": "object",
       "properties": {
         "boostable_boss_list": {
+          "description": "The list of boostable bosses.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.OverviewBoostableBoss"
           }
         },
         "boosted": {
-          "$ref": "#/definitions/main.OverviewBoostableBoss"
+          "description": "The current boosted boss.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.OverviewBoostableBoss"
+            }
+          ]
         }
       }
     },
@@ -1102,127 +1804,59 @@
         }
       }
     },
+    "main.BoostableBossesOverviewResponseV3": {
+      "type": "object",
+      "properties": {
+        "boostable_bosses": {
+          "$ref": "#/definitions/main.BoostableBossesContainer"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
     "main.Character": {
       "type": "object",
       "properties": {
-        "account_status": {
-          "type": "string"
-        },
-        "achievement_points": {
-          "type": "integer"
-        },
-        "comment": {
-          "type": "string"
-        },
-        "deletion_date": {
-          "type": "string"
-        },
-        "former_names": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "former_worlds": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "guild": {
-          "$ref": "#/definitions/main.CharacterGuild"
-        },
-        "houses": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/main.Houses"
-          }
-        },
-        "last_login": {
-          "type": "string"
-        },
-        "level": {
-          "type": "integer"
-        },
-        "married_to": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "residence": {
-          "type": "string"
-        },
-        "sex": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "traded": {
-          "type": "boolean"
-        },
-        "unlocked_titles": {
-          "type": "integer"
-        },
-        "vocation": {
-          "type": "string"
-        },
-        "world": {
-          "type": "string"
-        }
-      }
-    },
-    "main.CharacterGuild": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "rank": {
-          "type": "string"
-        }
-      }
-    },
-    "main.CharacterResponse": {
-      "type": "object",
-      "properties": {
-        "characters": {
-          "$ref": "#/definitions/main.Characters"
-        },
-        "information": {
-          "$ref": "#/definitions/main.Information"
-        }
-      }
-    },
-    "main.Characters": {
-      "type": "object",
-      "properties": {
         "account_badges": {
+          "description": "The account's badges.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.AccountBadges"
           }
         },
         "account_information": {
-          "$ref": "#/definitions/main.AccountInformation"
+          "description": "The account information.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.AccountInformation"
+            }
+          ]
         },
         "achievements": {
+          "description": "The character's achievements.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Achievements"
           }
         },
         "character": {
-          "$ref": "#/definitions/main.Character"
+          "description": "The character's information.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.CharacterInfo"
+            }
+          ]
         },
         "deaths": {
+          "description": "The character's deaths.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Deaths"
           }
         },
         "other_characters": {
+          "description": "The account's other characters.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.OtherCharacters"
@@ -1230,19 +1864,156 @@
         }
       }
     },
+    "main.CharacterGuild": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the guild.",
+          "type": "string"
+        },
+        "rank": {
+          "description": "The character's rank in the guild.",
+          "type": "string"
+        }
+      }
+    },
+    "main.CharacterInfo": {
+      "type": "object",
+      "properties": {
+        "account_status": {
+          "description": "Whether account is Free or Premium.",
+          "type": "string"
+        },
+        "achievement_points": {
+          "description": "The total of achievement points the character has.",
+          "type": "integer"
+        },
+        "comment": {
+          "description": "The character's comment.",
+          "type": "string"
+        },
+        "deletion_date": {
+          "description": "The date when the character will be deleted. (if scheduled for deletion)",
+          "type": "string"
+        },
+        "former_names": {
+          "description": "List of former names of the character.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "former_worlds": {
+          "description": "List of former worlds the character was in. (last 6 months)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "guild": {
+          "description": "The guild that the character is member of.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.CharacterGuild"
+            }
+          ]
+        },
+        "houses": {
+          "description": "List of houses the character owns currently.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Houses"
+          }
+        },
+        "last_login": {
+          "description": "The character's last logged in time.",
+          "type": "string"
+        },
+        "level": {
+          "description": "The character's level.",
+          "type": "integer"
+        },
+        "married_to": {
+          "description": "The name of the character's husband/spouse.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the character.",
+          "type": "string"
+        },
+        "position": {
+          "description": "The character's special position.",
+          "type": "string"
+        },
+        "residence": {
+          "description": "The character's current residence.",
+          "type": "string"
+        },
+        "sex": {
+          "description": "The character's sex.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The character's selected title.",
+          "type": "string"
+        },
+        "traded": {
+          "description": "Whether the character was traded. (last 6 months)",
+          "type": "boolean"
+        },
+        "unlocked_titles": {
+          "description": "The number of titles the character has unlocked.",
+          "type": "integer"
+        },
+        "vocation": {
+          "description": "The character's vocation.",
+          "type": "string"
+        },
+        "world": {
+          "description": "The character's current world.",
+          "type": "string"
+        }
+      }
+    },
+    "main.CharacterResponse": {
+      "type": "object",
+      "properties": {
+        "character": {
+          "$ref": "#/definitions/main.Character"
+        },
+        "information": {
+          "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.CharacterResponseV3": {
+      "type": "object",
+      "properties": {
+        "characters": {
+          "$ref": "#/definitions/main.Character"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
     "main.ContentType": {
       "type": "object",
       "properties": {
         "statistics": {
+          "description": "Whether the fansite content is statistics.",
           "type": "boolean"
         },
         "texts": {
+          "description": "Whether the fansite content is texts.",
           "type": "boolean"
         },
         "tools": {
+          "description": "Whether the fansite content is tools.",
           "type": "boolean"
         },
         "wiki": {
+          "description": "Whether the fansite content is wiki.",
           "type": "boolean"
         }
       }
@@ -1251,75 +2022,95 @@
       "type": "object",
       "properties": {
         "be_convinced": {
+          "description": "Whether it can be convinced or not.",
           "type": "boolean"
         },
         "be_paralysed": {
+          "description": "Whether it can be paralysed or not.",
           "type": "boolean"
         },
         "be_summoned": {
+          "description": "Whether it can be summoned or not.",
           "type": "boolean"
         },
         "behaviour": {
+          "description": "The plain description of behaviour of the creature.",
           "type": "string"
         },
         "convinced_mana": {
+          "description": "The mana neccessary to convince it.",
           "type": "integer"
         },
         "description": {
+          "description": "A description of the creature.",
           "type": "string"
         },
         "experience_points": {
+          "description": "The number of experience points given for killing it.",
           "type": "integer"
         },
         "featured": {
+          "description": "Whether it is featured of not.",
           "type": "boolean"
         },
         "healed": {
+          "description": "The elements it is healed when being damaged.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "hitpoints": {
+          "description": "The number of hitpoints the creature has.",
           "type": "integer"
         },
         "image_url": {
+          "description": "The URL to this creature's image.",
           "type": "string"
         },
         "immune": {
+          "description": "The elements it is immune to.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "is_lootable": {
+          "description": "Whether it can be looted or not.",
           "type": "boolean"
         },
         "loot_list": {
+          "description": "Some of the items it drops.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "name": {
+          "description": "The name of the creature.",
           "type": "string"
         },
         "race": {
+          "description": "The creature's internal name.",
           "type": "string"
         },
         "see_invisible": {
+          "description": "Whether it can see even when being invisible or not.",
           "type": "boolean"
         },
         "strong": {
+          "description": "The elements it is strong against.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "summoned_mana": {
+          "description": "The mana neccessary to summon it.",
           "type": "integer"
         },
         "weakness": {
+          "description": "The elements it is weak against.",
           "type": "array",
           "items": {
             "type": "string"
@@ -1338,13 +2129,30 @@
         }
       }
     },
+    "main.CreatureResponseV3": {
+      "type": "object",
+      "properties": {
+        "creatures": {
+          "$ref": "#/definitions/main.CreaturesContainer"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
     "main.CreaturesContainer": {
       "type": "object",
       "properties": {
         "boosted": {
-          "$ref": "#/definitions/main.OverviewCreature"
+          "description": "The current boosted creature.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.OverviewCreature"
+            }
+          ]
         },
         "creature_list": {
+          "description": "The list of creatures.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.OverviewCreature"
@@ -1363,28 +2171,44 @@
         }
       }
     },
+    "main.CreaturesOverviewResponseV3": {
+      "type": "object",
+      "properties": {
+        "creature": {
+          "$ref": "#/definitions/main.Creature"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
     "main.Deaths": {
       "type": "object",
       "properties": {
         "assists": {
+          "description": "List of assists involved.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Killers"
           }
         },
         "killers": {
+          "description": "List of killers involved.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Killers"
           }
         },
         "level": {
+          "description": "The level when the death occurred.",
           "type": "integer"
         },
         "reason": {
+          "description": "The plain text reason of death.",
           "type": "string"
         },
         "time": {
+          "description": "The timestamp when the death occurred.",
           "type": "string"
         }
       }
@@ -1393,18 +2217,23 @@
       "type": "object",
       "properties": {
         "last_day_killed": {
+          "description": "Number of creatures of this race killed in the last day.",
           "type": "integer"
         },
         "last_day_players_killed": {
+          "description": "Number of players killed by this race in the last day.",
           "type": "integer"
         },
         "last_week_killed": {
+          "description": "Number of creatures of this race killed in the last week.",
           "type": "integer"
         },
         "last_week_players_killed": {
+          "description": "Number of players killed by this race in the last week.",
           "type": "integer"
         },
         "race": {
+          "description": "The name of the creature/race.",
           "type": "string"
         }
       }
@@ -1413,36 +2242,54 @@
       "type": "object",
       "properties": {
         "contact": {
+          "description": "The fansite contact person.",
           "type": "string"
         },
         "content_type": {
-          "$ref": "#/definitions/main.ContentType"
+          "description": "The content type of the fansite.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.ContentType"
+            }
+          ]
         },
         "fansite_item": {
+          "description": "The fansite's ingame item.",
           "type": "boolean"
         },
         "fansite_item_url": {
+          "description": "The URL to the fansite's ingame item.",
           "type": "string"
         },
         "homepage": {
+          "description": "The fansite's homepage.",
           "type": "string"
         },
         "languages": {
+          "description": "The fansite's languages.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "logo_url": {
+          "description": "The URL to the fansite's logo.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the fansite.",
           "type": "string"
         },
         "social_media": {
-          "$ref": "#/definitions/main.SocialMedia"
+          "description": "The social media presence of the fansite.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.SocialMedia"
+            }
+          ]
         },
         "specials": {
+          "description": "The fansite's specials.",
           "type": "array",
           "items": {
             "type": "string"
@@ -1454,12 +2301,14 @@
       "type": "object",
       "properties": {
         "promoted": {
+          "description": "List of promoted fansites.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Fansite"
           }
         },
         "supported": {
+          "description": "List of supported fansites.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Fansite"
@@ -1478,70 +2327,99 @@
         }
       }
     },
+    "main.FansitesResponseV3": {
+      "type": "object",
+      "properties": {
+        "fansites": {
+          "$ref": "#/definitions/main.Fansites"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
     "main.Guild": {
       "type": "object",
       "properties": {
         "active": {
+          "description": "Whether the guild is active or in formation.",
           "type": "boolean"
         },
         "description": {
+          "description": "The description of the guild.",
           "type": "string"
         },
         "disband_condition": {
+          "description": "The reason why the guild will get disbanded.",
           "type": "string"
         },
         "disband_date": {
+          "description": "The date when the guild will be disbanded, if the condition aren't meet.",
           "type": "string"
         },
         "founded": {
+          "description": "The day it was founded.",
           "type": "string"
         },
         "guildhalls": {
+          "description": "The guildhall the guild has as their home.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Guildhall"
           }
         },
         "homepage": {
+          "description": "The guild's homepage.",
           "type": "string"
         },
         "in_war": {
+          "description": "Whether it is currently in war or not.",
           "type": "boolean"
         },
         "invites": {
+          "description": "List of invited members.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.InvitedGuildMember"
           }
         },
         "logo_url": {
+          "description": "The URL to the guild's logo.",
           "type": "string"
         },
         "members": {
+          "description": "List of all members in the guild.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.GuildMember"
           }
         },
         "members_invited": {
+          "description": "The number of invited members in the guild.",
           "type": "integer"
         },
         "members_total": {
+          "description": "The number of total members in the guild.",
           "type": "integer"
         },
         "name": {
+          "description": "The name of the guild.",
           "type": "string"
         },
         "open_applications": {
+          "description": "Whether applications are open or not.",
           "type": "boolean"
         },
         "players_offline": {
+          "description": "The number of offline members in the guild.",
           "type": "integer"
         },
         "players_online": {
+          "description": "The number of online members in the guild.",
           "type": "integer"
         },
         "world": {
+          "description": "The world the guild belongs to.",
           "type": "string"
         }
       }
@@ -1550,24 +2428,31 @@
       "type": "object",
       "properties": {
         "joined": {
+          "description": "The day when the member joined.",
           "type": "string"
         },
         "level": {
+          "description": "The member's level.",
           "type": "integer"
         },
         "name": {
+          "description": "The name of the guild's member.",
           "type": "string"
         },
         "rank": {
+          "description": "The rank the member does belong to.",
           "type": "string"
         },
         "status": {
+          "description": "Whether the member is online or offline.",
           "type": "string"
         },
         "title": {
+          "description": "The member's title.",
           "type": "string"
         },
         "vocation": {
+          "description": "The member's vocation.",
           "type": "string"
         }
       }
@@ -1575,11 +2460,30 @@
     "main.GuildResponse": {
       "type": "object",
       "properties": {
-        "guilds": {
-          "$ref": "#/definitions/main.Guilds"
+        "guild": {
+          "$ref": "#/definitions/main.Guild"
         },
         "information": {
           "$ref": "#/definitions/main.Information"
+        }
+      }
+    },
+    "main.GuildResponseV3": {
+      "type": "object",
+      "properties": {
+        "guilds": {
+          "$ref": "#/definitions/main.GuildV3"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
+    "main.GuildV3": {
+      "type": "object",
+      "properties": {
+        "guild": {
+          "$ref": "#/definitions/main.Guild"
         }
       }
     },
@@ -1587,6 +2491,7 @@
       "type": "object",
       "properties": {
         "name": {
+          "description": "The name of the house.",
           "type": "string"
         },
         "paid_until": {
@@ -1594,16 +2499,8 @@
           "type": "string"
         },
         "world": {
-          "description": "Maybe duplicate info? Guild can only be on one world..",
+          "description": "The world the guildhall belongs to.",
           "type": "string"
-        }
-      }
-    },
-    "main.Guilds": {
-      "type": "object",
-      "properties": {
-        "guild": {
-          "$ref": "#/definitions/main.Guild"
         }
       }
     },
@@ -1618,35 +2515,46 @@
         }
       }
     },
+    "main.GuildsOverviewResponseV3": {
+      "type": "object",
+      "properties": {
+        "guilds": {
+          "$ref": "#/definitions/main.OverviewGuilds"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
     "main.Highscore": {
       "type": "object",
       "properties": {
         "level": {
-          "description": "Level column",
+          "description": "The character's level.",
           "type": "integer"
         },
         "name": {
-          "description": "Name column",
+          "description": "The name of the character.",
           "type": "string"
         },
         "rank": {
-          "description": "Rank column",
+          "description": "The character's rank/postition.",
           "type": "integer"
         },
         "title": {
-          "description": "Title column (when category: loyalty)",
+          "description": "The character's loyalty title. (when category: loyalty)",
           "type": "string"
         },
         "value": {
-          "description": "Points/SkillLevel column",
+          "description": "The character's value for the highscores or loyalty points.",
           "type": "integer"
         },
         "vocation": {
-          "description": "Vocation column",
+          "description": "The character's vocation.",
           "type": "string"
         },
         "world": {
-          "description": "World column",
+          "description": "The character's world.",
           "type": "string"
         }
       }
@@ -1655,15 +2563,15 @@
       "type": "object",
       "properties": {
         "current_page": {
-          "description": "Current page",
+          "description": "The current page being displayed.",
           "type": "integer"
         },
         "total_pages": {
-          "description": "Total page count",
+          "description": "The total number of pages.",
           "type": "integer"
         },
         "total_records": {
-          "description": "Total highscore records",
+          "description": "The total amount of highscore records.",
           "type": "integer"
         }
       }
@@ -1672,24 +2580,34 @@
       "type": "object",
       "properties": {
         "category": {
+          "description": "The selected category being displayed.",
           "type": "string"
         },
         "highscore_age": {
+          "description": "The age of the highscore page in minutes.",
           "type": "integer"
         },
         "highscore_list": {
+          "description": "List of highscore records.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Highscore"
           }
         },
         "highscore_page": {
-          "$ref": "#/definitions/main.HighscorePage"
+          "description": "Information of highscore pages.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.HighscorePage"
+            }
+          ]
         },
         "vocation": {
+          "description": "The selected vocation filtered on.",
           "type": "string"
         },
         "world": {
+          "description": "The world the highscores belong to.",
           "type": "string"
         }
       }
@@ -1705,37 +2623,62 @@
         }
       }
     },
+    "main.HighscoresResponseV3": {
+      "type": "object",
+      "properties": {
+        "highscores": {
+          "$ref": "#/definitions/main.Highscores"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
     "main.House": {
       "type": "object",
       "properties": {
         "beds": {
+          "description": "The number of beds it has.",
           "type": "integer"
         },
         "houseid": {
+          "description": "The internal ID of the house/guildhall.",
           "type": "integer"
         },
         "img": {
+          "description": "The URL to the house's minimap image.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the house/guildhall.",
           "type": "string"
         },
         "rent": {
+          "description": "The monthly cost in gold coins for the house.",
           "type": "integer"
         },
         "size": {
+          "description": "The number of SQM it has.",
           "type": "integer"
         },
         "status": {
-          "$ref": "#/definitions/main.HouseStatus"
+          "description": "The current status of the house/guildhall.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.HouseStatus"
+            }
+          ]
         },
         "town": {
+          "description": "The town where the house/guildhall is located.",
           "type": "string"
         },
         "type": {
+          "description": "The type of home. (house or guildhall)",
           "type": "string"
         },
         "world": {
+          "description": "The name of the world the house/guildhall belongs to.",
           "type": "string"
         }
       }
@@ -1744,15 +2687,19 @@
       "type": "object",
       "properties": {
         "auction_end": {
+          "description": "The date when the auction will finish.",
           "type": "string"
         },
         "auction_ongoing": {
+          "description": "Whether the auction is still ongoing or not.",
           "type": "boolean"
         },
         "current_bid": {
+          "description": "The currently highest bid on the house/guildhall.",
           "type": "integer"
         },
         "current_bidder": {
+          "description": "The character that holds the current highest bid.",
           "type": "string"
         }
       }
@@ -1761,24 +2708,31 @@
       "type": "object",
       "properties": {
         "moving_date": {
+          "description": "The date when the owner will move out.",
           "type": "string"
         },
         "owner": {
+          "description": "The current owner of the house/guildhall.",
           "type": "string"
         },
         "owner_sex": {
+          "description": "The owner's sex.",
           "type": "string"
         },
         "paid_until": {
+          "description": "The date the last paid rent is due.",
           "type": "string"
         },
         "transfer_accept": {
+          "description": "Whether the transfer is accepted or not.",
           "type": "boolean"
         },
         "transfer_price": {
+          "description": "The price that will be paid from the current owner to the new owner for the transfer.",
           "type": "integer"
         },
         "transfer_receiver": {
+          "description": "The character who will receive the house.",
           "type": "string"
         }
       }
@@ -1794,29 +2748,55 @@
         }
       }
     },
+    "main.HouseResponseV3": {
+      "type": "object",
+      "properties": {
+        "house": {
+          "$ref": "#/definitions/main.House"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
     "main.HouseStatus": {
       "type": "object",
       "properties": {
         "auction": {
-          "$ref": "#/definitions/main.HouseAuction"
+          "description": "Details about the auction.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.HouseAuction"
+            }
+          ]
         },
         "is_auctioned": {
+          "description": "Whether the house/guildhall is being auctioned.",
           "type": "boolean"
         },
         "is_moving": {
+          "description": "Wether the owner is moving out.",
           "type": "boolean"
         },
         "is_rented": {
+          "description": "Wether the house/guildhall is being rented.",
           "type": "boolean"
         },
         "is_transfering": {
+          "description": "Wether the house/guildhall is being transfered.",
           "type": "boolean"
         },
         "original": {
+          "description": "Original plain text information.",
           "type": "string"
         },
         "rental": {
-          "$ref": "#/definitions/main.HouseRental"
+          "description": "Details about the transfer.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.HouseRental"
+            }
+          ]
         }
       }
     },
@@ -1824,15 +2804,19 @@
       "type": "object",
       "properties": {
         "houseid": {
+          "description": "The internal ID of the house.",
           "type": "integer"
         },
         "name": {
+          "description": "The name of the house.",
           "type": "string"
         },
         "paid": {
+          "description": "The date the last paid rent is due.",
           "type": "string"
         },
         "town": {
+          "description": "The town where the house is located in.",
           "type": "string"
         }
       }
@@ -1841,12 +2825,15 @@
       "type": "object",
       "properties": {
         "current_bid": {
+          "description": "The highest bid so far.",
           "type": "integer"
         },
         "finished": {
+          "description": "Whether the auction is finished or not.",
           "type": "boolean"
         },
         "time_left": {
+          "description": "The number of days or hours left until the bid ends.",
           "type": "string"
         }
       }
@@ -1855,24 +2842,35 @@
       "type": "object",
       "properties": {
         "auction": {
-          "$ref": "#/definitions/main.HousesAuction"
+          "description": "Details about the auction.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.HousesAuction"
+            }
+          ]
         },
         "auctioned": {
+          "description": "Whether the auction is auctioned or not.",
           "type": "boolean"
         },
         "house_id": {
+          "description": "The internal ID of the house/guildhall.",
           "type": "integer"
         },
         "name": {
+          "description": "The name of the house/guildhall.",
           "type": "string"
         },
         "rent": {
+          "description": "The monthly cost in gold coins for the house/guildhall.",
           "type": "integer"
         },
         "rented": {
+          "description": "Whether the auction is rented or not.",
           "type": "boolean"
         },
         "size": {
+          "description": "The size in SQM.",
           "type": "integer"
         }
       }
@@ -1881,21 +2879,25 @@
       "type": "object",
       "properties": {
         "guildhall_list": {
+          "description": "List of all guildhalls.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.HousesHouse"
           }
         },
         "house_list": {
+          "description": "List of all houses.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.HousesHouse"
           }
         },
         "town": {
+          "description": "The town where the house/guildhall is located.",
           "type": "string"
         },
         "world": {
+          "description": "The name of the world the house/guildhall belongs to.",
           "type": "string"
         }
       }
@@ -1911,16 +2913,51 @@
         }
       }
     },
+    "main.HousesOverviewResponseV3": {
+      "type": "object",
+      "properties": {
+        "houses": {
+          "$ref": "#/definitions/main.HousesHouses"
+        },
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
     "main.Information": {
       "type": "object",
       "properties": {
-        "api_version": {
-          "type": "integer"
+        "api": {
+          "description": "The API details.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.APIDetails"
+            }
+          ]
         },
         "status": {
-          "$ref": "#/definitions/main.Status"
+          "description": "The response status information.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.Status"
+            }
+          ]
         },
         "timestamp": {
+          "description": "The timestamp from when the data was processed.",
+          "type": "string"
+        }
+      }
+    },
+    "main.InformationV3": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "description": "The API major version currently running.",
+          "type": "integer"
+        },
+        "timestamp": {
+          "description": "The timestamp from when the data was processed.",
           "type": "string"
         }
       }
@@ -1929,9 +2966,11 @@
       "type": "object",
       "properties": {
         "date": {
+          "description": "The date the character was invited.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the character.",
           "type": "string"
         }
       }
@@ -1940,15 +2979,22 @@
       "type": "object",
       "properties": {
         "entries": {
+          "description": "List of killstatistic.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Entry"
           }
         },
         "total": {
-          "$ref": "#/definitions/main.Total"
+          "description": "List of total kills.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.Total"
+            }
+          ]
         },
         "world": {
+          "description": "The world the statistics belong to.",
           "type": "string"
         }
       }
@@ -1964,19 +3010,34 @@
         }
       }
     },
+    "main.KillStatisticsResponseV3": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        },
+        "killstatistics": {
+          "$ref": "#/definitions/main.KillStatistics"
+        }
+      }
+    },
     "main.Killers": {
       "type": "object",
       "properties": {
         "name": {
+          "description": "The name of the killer/assist.",
           "type": "string"
         },
         "player": {
+          "description": "Whether it is a player or not.",
           "type": "boolean"
         },
         "summon": {
+          "description": "The name of the summoned creature.",
           "type": "string"
         },
         "traded": {
+          "description": "If the killer/assist was traded after the death.",
           "type": "boolean"
         }
       }
@@ -1985,27 +3046,35 @@
       "type": "object",
       "properties": {
         "category": {
+          "description": "The category of the news.",
           "type": "string"
         },
         "content": {
+          "description": "The news in plain text.",
           "type": "string"
         },
         "content_html": {
+          "description": "The news in HTML format.",
           "type": "string"
         },
         "date": {
+          "description": "The date when the news was published.",
           "type": "string"
         },
         "id": {
+          "description": "The internal ID of the news.",
           "type": "integer"
         },
         "title": {
+          "description": "The title of the news.",
           "type": "string"
         },
         "type": {
+          "description": "The type of news.",
           "type": "string"
         },
         "url": {
+          "description": "The URL for the news with id.",
           "type": "string"
         }
       }
@@ -2014,24 +3083,31 @@
       "type": "object",
       "properties": {
         "category": {
+          "description": "The category of the news.",
           "type": "string"
         },
         "date": {
+          "description": "The date when the news was published.",
           "type": "string"
         },
         "id": {
+          "description": "The internal ID of the news.",
           "type": "integer"
         },
         "news": {
+          "description": "The news in plain text.",
           "type": "string"
         },
         "type": {
+          "description": "The type of news.",
           "type": "string"
         },
         "url": {
+          "description": "The URL for the news with id.",
           "type": "string"
         },
         "url_api": {
+          "description": "The URL for the news in this API.",
           "type": "string"
         }
       }
@@ -2050,6 +3126,17 @@
         }
       }
     },
+    "main.NewsListResponseV3": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        },
+        "news": {
+          "$ref": "#/definitions/main.News"
+        }
+      }
+    },
     "main.NewsResponse": {
       "type": "object",
       "properties": {
@@ -2061,16 +3148,33 @@
         }
       }
     },
+    "main.NewsResponseV3": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        },
+        "news": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.NewsItem"
+          }
+        }
+      }
+    },
     "main.OnlinePlayers": {
       "type": "object",
       "properties": {
         "level": {
+          "description": "The character's level.",
           "type": "integer"
         },
         "name": {
+          "description": "The name of the character.",
           "type": "string"
         },
         "vocation": {
+          "description": "The character's vocation.",
           "type": "string"
         }
       }
@@ -2079,23 +3183,31 @@
       "type": "object",
       "properties": {
         "deleted": {
-          "description": "don't know how to do that yet..",
+          "description": "Whether the character is scheduled for deletion or not.",
           "type": "boolean"
         },
         "main": {
+          "description": "Whether this is the main character or not.",
           "type": "boolean"
         },
         "name": {
+          "description": "The name of the character.",
+          "type": "string"
+        },
+        "position": {
+          "description": "// The character's special position.",
           "type": "string"
         },
         "status": {
-          "description": "online/offline",
+          "description": "The status of the character being online or offline.",
           "type": "string"
         },
         "traded": {
+          "description": "Whether the character has been traded last 6 months or not.",
           "type": "boolean"
         },
         "world": {
+          "description": "The name of the world.",
           "type": "string"
         }
       }
@@ -2104,12 +3216,15 @@
       "type": "object",
       "properties": {
         "featured": {
+          "description": "Whether it is featured of not.",
           "type": "boolean"
         },
         "image_url": {
+          "description": "The URL to this boss's image.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the boss.",
           "type": "string"
         }
       }
@@ -2118,15 +3233,19 @@
       "type": "object",
       "properties": {
         "featured": {
+          "description": "Whether it is featured of not.",
           "type": "boolean"
         },
         "image_url": {
+          "description": "The URL to this creature's image.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the creature (usually in plural).",
           "type": "string"
         },
         "race": {
+          "description": "The creature's internal name.",
           "type": "string"
         }
       }
@@ -2135,12 +3254,15 @@
       "type": "object",
       "properties": {
         "description": {
+          "description": "The description of the guild.",
           "type": "string"
         },
         "logo_url": {
+          "description": "The URL to the guild's logo.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the guild.",
           "type": "string"
         }
       }
@@ -2149,18 +3271,21 @@
       "type": "object",
       "properties": {
         "active": {
+          "description": "List of active guilds.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.OverviewGuild"
           }
         },
         "formation": {
+          "description": "List of guilds under formation.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.OverviewGuild"
           }
         },
         "world": {
+          "description": "The world the guilds belongs to.",
           "type": "string"
         }
       }
@@ -2169,46 +3294,47 @@
       "type": "object",
       "properties": {
         "battleye_date": {
-          "description": "BattlEye Status: null if since release / else show date?",
+          "description": "The date when BattlEye was added. \"\" if since release / else show date?",
           "type": "string"
         },
         "battleye_protected": {
-          "description": "BattlEye Status: true if protected / false if \"Not protected by BattlEye.\"",
+          "description": "The type of BattlEye protection. true if protected / false if \"Not protected by BattlEye.\"",
           "type": "boolean"
         },
         "game_world_type": {
-          "description": "BattlEye Status: regular / experimental / tournament (if Tournament World Type exists)",
+          "description": "The type of world. regular / experimental / tournament (if Tournament World Type exists)",
           "type": "string"
         },
         "location": {
-          "description": "Location:",
+          "description": "The physical location of the servers.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the world.",
           "type": "string"
         },
         "players_online": {
-          "description": "Online:",
+          "description": "The number of currently online players.",
           "type": "integer"
         },
         "premium_only": {
-          "description": "Additional Information: premium = true / else: false",
+          "description": "Whether only premium account players are allowed to play on it.",
           "type": "boolean"
         },
         "pvp_type": {
-          "description": "PvP Type:",
+          "description": "The type of PvP.",
           "type": "string"
         },
         "status": {
-          "description": "Online:",
+          "description": "The current status of the world.",
           "type": "string"
         },
         "tournament_world_type": {
-          "description": "BattlEye Status: null (default?) / regular / restricted",
+          "description": "The type of tournament world. \"\" (default?) / regular / restricted",
           "type": "string"
         },
         "transfer_type": {
-          "description": "Additional Information: regular (if not present) / locked / blocked",
+          "description": "The type of transfer restrictions it has. regular (if not present) / locked / blocked",
           "type": "string"
         }
       }
@@ -2217,24 +3343,26 @@
       "type": "object",
       "properties": {
         "players_online": {
-          "description": "Calculated value",
+          "description": "Total players online across all worlds.",
           "type": "integer"
         },
         "record_date": {
-          "description": "Overall Maximum:",
+          "description": "The date when the record was achieved.",
           "type": "string"
         },
         "record_players": {
-          "description": "Overall Maximum:",
+          "description": "The world's online players record.",
           "type": "integer"
         },
         "regular_worlds": {
+          "description": "List of regular worlds.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.OverviewWorld"
           }
         },
         "tournament_worlds": {
+          "description": "List of tournament worlds.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.OverviewWorld"
@@ -2246,24 +3374,31 @@
       "type": "object",
       "properties": {
         "damage_type": {
+          "description": "The type of damage caused by it.",
           "type": "string"
         },
         "group_attack": {
+          "description": "Whether the group is attack.",
           "type": "boolean"
         },
         "group_healing": {
+          "description": "Whether the group is healing.",
           "type": "boolean"
         },
         "group_support": {
+          "description": "Whether the group is support.",
           "type": "boolean"
         },
         "level": {
+          "description": "The required level for using.",
           "type": "integer"
         },
         "magic_level": {
+          "description": "The required magic level for using.",
           "type": "integer"
         },
         "vocation": {
+          "description": "List of vocations that can use the rune.",
           "type": "array",
           "items": {
             "type": "string"
@@ -2275,24 +3410,31 @@
       "type": "object",
       "properties": {
         "discord": {
+          "description": "Whether the fansite has Discord or not.",
           "type": "boolean"
         },
         "facebook": {
+          "description": "Whether the fansite has Facebook or not.",
           "type": "boolean"
         },
         "instagram": {
+          "description": "Whether the fansite has Instagram or not.",
           "type": "boolean"
         },
         "reddit": {
+          "description": "Whether the fansite has Reddit or not.",
           "type": "boolean"
         },
         "twitch": {
+          "description": "Whether the fansite has Twitch or not.",
           "type": "boolean"
         },
         "twitter": {
+          "description": "Whether the fansite has Twitter or not.",
           "type": "boolean"
         },
         "youtube": {
+          "description": "Whether the fansite has Youtube or not.",
           "type": "boolean"
         }
       }
@@ -2301,39 +3443,51 @@
       "type": "object",
       "properties": {
         "formula": {
+          "description": "The formula to cast the spell.",
           "type": "string"
         },
         "group_attack": {
+          "description": "Whether the group is attack.",
           "type": "boolean"
         },
         "group_healing": {
+          "description": "Whether the group is healing.",
           "type": "boolean"
         },
         "group_support": {
+          "description": "Whether the group is support.",
           "type": "boolean"
         },
         "level": {
+          "description": "The required level for casting.",
           "type": "integer"
         },
         "mana": {
+          "description": "The required mana for using.",
           "type": "integer"
         },
         "name": {
+          "description": "The name of the spell.",
           "type": "string"
         },
         "premium_only": {
+          "description": "Whether it requires to have premium account to learn and use it.",
           "type": "boolean"
         },
         "price": {
+          "description": "The price in gold coins to learn it.",
           "type": "integer"
         },
         "spell_id": {
+          "description": "The internal identifier of the spell.",
           "type": "string"
         },
         "type_instant": {
+          "description": "Whether the type is instant.",
           "type": "boolean"
         },
         "type_rune": {
+          "description": "Whether the type is rune.",
           "type": "boolean"
         }
       }
@@ -2342,28 +3496,44 @@
       "type": "object",
       "properties": {
         "description": {
+          "description": "A description of it's effect and history.",
           "type": "string"
         },
         "has_rune_information": {
+          "description": "Whether the spell has rune information.",
           "type": "boolean"
         },
         "has_spell_information": {
+          "description": "Whether the spell has information.",
           "type": "boolean"
         },
         "image_url": {
+          "description": "The URL to this spell's image.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the spell.",
           "type": "string"
         },
         "rune_information": {
-          "$ref": "#/definitions/main.RuneInformation"
+          "description": "Information about the spell's rune.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.RuneInformation"
+            }
+          ]
         },
         "spell_id": {
+          "description": "The internal identifier of the spell.",
           "type": "string"
         },
         "spell_information": {
-          "$ref": "#/definitions/main.SpellInformation"
+          "description": "Information about the spell.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.SpellInformation"
+            }
+          ]
         }
       }
     },
@@ -2371,57 +3541,74 @@
       "type": "object",
       "properties": {
         "amount": {
+          "description": "The amount of objects created when casting.",
           "type": "integer"
         },
         "city": {
+          "description": "The cities where to learn it.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "cooldown_alone": {
+          "description": "The individual cooldown of this spell in seconds.",
           "type": "integer"
         },
         "cooldown_group": {
+          "description": "The group cooldown of this spell in seconds.",
           "type": "integer"
         },
         "damage_type": {
+          "description": "The type of damage caused by it.",
           "type": "string"
         },
         "formula": {
+          "description": "The formula to cast the spell.",
           "type": "string"
         },
         "group_attack": {
+          "description": "Whether the group is attack.",
           "type": "boolean"
         },
         "group_healing": {
+          "description": "Whether the group is healing.",
           "type": "boolean"
         },
         "group_support": {
+          "description": "Whether the group is support.",
           "type": "boolean"
         },
         "level": {
+          "description": "The required level for casting.",
           "type": "integer"
         },
         "mana": {
+          "description": "The required mana for using.",
           "type": "integer"
         },
         "premium_only": {
+          "description": "Whether it requires a premium account to learn and use it.",
           "type": "boolean"
         },
         "price": {
+          "description": "The price in gold coins to learn it.",
           "type": "integer"
         },
         "soul_points": {
+          "description": "The number of soul points consumed when casting.",
           "type": "integer"
         },
         "type_instant": {
+          "description": "Whether the type is instant.",
           "type": "boolean"
         },
         "type_rune": {
+          "description": "Whether the type is rune.",
           "type": "boolean"
         },
         "vocation": {
+          "description": "The vocations that can use this spell.",
           "type": "array",
           "items": {
             "type": "string"
@@ -2435,8 +3622,27 @@
         "information": {
           "$ref": "#/definitions/main.Information"
         },
+        "spell": {
+          "$ref": "#/definitions/main.SpellData"
+        }
+      }
+    },
+    "main.SpellInformationResponseV3": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        },
         "spells": {
-          "$ref": "#/definitions/main.SpellsContainer"
+          "$ref": "#/definitions/main.SpellV3"
+        }
+      }
+    },
+    "main.SpellV3": {
+      "type": "object",
+      "properties": {
+        "spell": {
+          "$ref": "#/definitions/main.SpellData"
         }
       }
     },
@@ -2444,21 +3650,15 @@
       "type": "object",
       "properties": {
         "spell_list": {
+          "description": "List of spells",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.Spell"
           }
         },
         "spells_filter": {
+          "description": "The applied filters on the list",
           "type": "string"
-        }
-      }
-    },
-    "main.SpellsContainer": {
-      "type": "object",
-      "properties": {
-        "spell": {
-          "$ref": "#/definitions/main.SpellData"
         }
       }
     },
@@ -2473,16 +3673,30 @@
         }
       }
     },
+    "main.SpellsOverviewResponseV3": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        },
+        "spells": {
+          "$ref": "#/definitions/main.Spells"
+        }
+      }
+    },
     "main.Status": {
       "type": "object",
       "properties": {
         "error": {
+          "description": "The error code thrown by TibiaData API for identification of issue.",
           "type": "integer"
         },
         "http_code": {
+          "description": "The HTTP response code from the API.",
           "type": "integer"
         },
         "message": {
+          "description": "The error message thrown by TibiaData API for human readability.",
           "type": "string"
         }
       }
@@ -2491,15 +3705,19 @@
       "type": "object",
       "properties": {
         "last_day_killed": {
+          "description": "Total number of creatures in total killed in the last day.",
           "type": "integer"
         },
         "last_day_players_killed": {
+          "description": "Total number of players killed in total in the last day.",
           "type": "integer"
         },
         "last_week_killed": {
+          "description": "Total number of creatures in total killed in the last week.",
           "type": "integer"
         },
         "last_week_players_killed": {
+          "description": "Total number of players killed in total in the last week.",
           "type": "integer"
         }
       }
@@ -2508,68 +3726,70 @@
       "type": "object",
       "properties": {
         "battleye_date": {
-          "description": "BattlEye Status: null if since release / else show date?",
+          "description": "The date when BattlEye was added. \"\" if since release / else show date?",
           "type": "string"
         },
         "battleye_protected": {
-          "description": "BattlEye Status: true if protected / false if \"Not protected by BattlEye.\"",
+          "description": "The type of BattlEye protection. true if protected / false if \"Not protected by BattlEye.\"",
           "type": "boolean"
         },
         "creation_date": {
-          "description": "Creation Date: -\u003e convert to YYYY-MM",
+          "description": "The year and month it was created.",
           "type": "string"
         },
         "game_world_type": {
-          "description": "Game World Type: regular / experimental / tournament (if Tournament World Type exists)",
+          "description": "The type of world. regular / experimental / tournament (if Tournament World Type exists)",
           "type": "string"
         },
         "location": {
-          "description": "Location:",
+          "description": "The physical location of the servers.",
           "type": "string"
         },
         "name": {
+          "description": "The name of the world.",
           "type": "string"
         },
         "online_players": {
+          "description": "List of players being currently online.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/main.OnlinePlayers"
           }
         },
         "players_online": {
-          "description": "Players Online:",
+          "description": "The number of currently online players.",
           "type": "integer"
         },
         "premium_only": {
-          "description": "Premium Type: premium = true / else: false",
+          "description": "Whether only premium account players are allowed to play on it.",
           "type": "boolean"
         },
         "pvp_type": {
-          "description": "PvP Type:",
+          "description": "The type of PvP.",
           "type": "string"
         },
         "record_date": {
-          "description": "Online Record:",
+          "description": "The date when the record was achieved.",
           "type": "string"
         },
         "record_players": {
-          "description": "Online Record:",
+          "description": "The world's online players record.",
           "type": "integer"
         },
         "status": {
-          "description": "Status:",
+          "description": "The current status of the world.",
           "type": "string"
         },
         "tournament_world_type": {
-          "description": "Tournament World Type: \"\" (default?) / regular / restricted",
+          "description": "The type of tournament world. \"\" (default?) / regular / restricted",
           "type": "string"
         },
         "transfer_type": {
-          "description": "Transfer Type: regular (if not present) / locked / blocked",
+          "description": "The type of transfer restrictions it has. regular (if not present) / locked / blocked",
           "type": "string"
         },
         "world_quest_titles": {
-          "description": "World Quest Titles:",
+          "description": "List of world quest titles the server has achieved.",
           "type": "array",
           "items": {
             "type": "string"
@@ -2583,12 +3803,23 @@
         "information": {
           "$ref": "#/definitions/main.Information"
         },
-        "worlds": {
-          "$ref": "#/definitions/main.Worlds"
+        "world": {
+          "$ref": "#/definitions/main.World"
         }
       }
     },
-    "main.Worlds": {
+    "main.WorldResponseV3": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
+        },
+        "worlds": {
+          "$ref": "#/definitions/main.WorldV3"
+        }
+      }
+    },
+    "main.WorldV3": {
       "type": "object",
       "properties": {
         "world": {
@@ -2601,6 +3832,17 @@
       "properties": {
         "information": {
           "$ref": "#/definitions/main.Information"
+        },
+        "worlds": {
+          "$ref": "#/definitions/main.OverviewWorlds"
+        }
+      }
+    },
+    "main.WorldsOverviewResponseV3": {
+      "type": "object",
+      "properties": {
+        "information": {
+          "$ref": "#/definitions/main.InformationV3"
         },
         "worlds": {
           "$ref": "#/definitions/main.OverviewWorlds"
