@@ -16,7 +16,7 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v3.6.0"
+    "version": "v3.7.0"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
@@ -913,6 +913,12 @@
         },
         "featured": {
           "type": "boolean"
+        },
+        "healed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "hitpoints": {
           "type": "integer"
@@ -2133,7 +2139,7 @@
           "type": "boolean"
         },
         "creation_date": {
-          "description": "Creation Date: -> convert to YYYY-MM",
+          "description": "Creation Date: -\u003e convert to YYYY-MM",
           "type": "string"
         },
         "game_world_type": {
