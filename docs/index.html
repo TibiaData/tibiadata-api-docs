@@ -1,105 +1,347 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-100" data-bs-theme="auto">
 
 <head>
-    <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <title>TibiaData API docs | swagger documentation</title>
-    <meta name="description" content="A RESTful API documentation for of the TibiaData API.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TibiaData API assets | swagger documentation</title>
+  <meta name="description" content="The swagger documentation for the TibiaData API." />
+  <meta property="og:title" content="Home" />
+  <meta property="og:description" content="The swagger documentation for the TibiaData API" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://docs.tibiadata.com/" />
+  <meta property="og:image" content="https://docs.tibiadata.com/images/open-graph-image-en.png" />
 
-    <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://docs.tibiadata.com/images/open-graph-image-en.png" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.slim.min.js" integrity="sha512-jxwTCbLJmXPnV277CvAjAcWAjURzpephk0f0nO2lwsvcoDMqBdy1rh1jEwWWTabX1+Grdmj9GFAgtN22zrV0KQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript">
-        // override spec-url if localStorage says so
-        if (localStorage.getItem('swagger_load_dev') == 'true') {
-            $(document).ready(function () {
-                $('rapi-doc')
-                    .attr('spec-url', 'https://docs.tibiadata.com/swagger-dev.json')
-                    .attr('server-url', 'https://api.tibiadata.com')
-                    .attr('default-api-server', 'https://dev.tibiadata.com')
-                $('#dev-note')
-                    .css("display", "block")
-            });
+  <meta name="twitter:title" content="Home" />
+  <meta name="twitter:description" content="The swagger documentation for the TibiaData API" />
+  <meta name="twitter:site" content="@TibiaData" />
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href=https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.min.css
+    integrity=sha384-fFxL8wXRpg9gVqGpY+URMtLr3fLL0WBbo4NBQ+IWwMDYjIjI5VQ46XlJm5+BUlXJ crossorigin=anonymous>
+
+  <link
+    href="https://docs.tibiadata.com/css/bundle.min.51d3fae7cf8416166d7df6e3532efe413cf79e1307a64a74520449dabfd72700f693bdfd63aedebc363ef481d5a936e0.css"
+    rel="stylesheet" integrity="sha384-UdP658&#43;EFhZtffbjUy7&#43;QTz3nhMHpkp0UgRJ2r/XJwD2k739Y67evDY&#43;9IHVqTbg">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-dark-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-dark-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    // override spec-url if localStorage says so
+    if (localStorage.getItem('swagger_load_dev') == 'true') {
+      $(document).ready(function () {
+        $('rapi-doc')
+          .attr('spec-url', 'https://docs.tibiadata.com/swagger-dev.json')
+          .attr('server-url', 'https://api.tibiadata.com')
+          .attr('default-api-server', 'https://dev.tibiadata.com')
+        $('#dev-note')
+          .css("display", "block")
+      });
+    }
+
+    // trigger on selection of API server and store flag in localStorage
+    document.addEventListener('DOMContentLoaded', (event) => {
+      let docEl = document.getElementById("thedoc");
+      docEl.addEventListener('api-server-change', (e) => {
+        localStorage.swagger_load_dev = false
+        if (e.detail.selectedServer.computedUrl == "https://dev.tibiadata.com") {
+          localStorage.swagger_load_dev = true
         }
+        location.reload();
+      });
+    })
 
-        // trigger on selection of API server and store flag in localStorage
-        document.addEventListener('DOMContentLoaded', (event) => {
-            let docEl = document.getElementById("thedoc");
-            docEl.addEventListener('api-server-change', (e) => {
-                localStorage.swagger_load_dev = false
-                if (e.detail.selectedServer.computedUrl == "https://dev.tibiadata.com") {
-                    localStorage.swagger_load_dev = true
-                }
-                location.reload();
-            });
-        })
-    </script>
+    // set "theme" in <rapi-doc> based on the user's preference (dark or light)
+    document.addEventListener('DOMContentLoaded', (event) => {
+      let docEl = document.getElementById("thedoc");
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        docEl.setAttribute('theme', 'dark');
+      } else {
+        docEl.setAttribute('theme', 'light');
+      }
+    })
+  </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ERQQZELMQ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ERQQZELMQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-        gtag('config', 'G-4ERQQZELMQ');
-    </script>
+    gtag('config', 'G-4ERQQZELMQ');
+  </script>
 </head>
 
-<body>
-    <rapi-doc id="thedoc" spec-url="https://docs.tibiadata.com/swagger.json" render-style="view" theme="light"
-        schema-style="table" show-header="false" server-url="https://dev.tibiadata.com"
-        default-api-server="https://api.tibiadata.com">
+<body class="d-flex flex-column">
+  <nav class="navbar navbar-expand-lg bg-dark-subtle sticky-top border-bottom" data-bs-theme="dark">
+    <div class="container container-xxl">
+      <a class="navbar-brand align-items-center" href="https://tibiadata.com/">
+        <img src="/images/favicon-light-32x32.png" alt="TibiaData logo" height="32px" width="32px">
+        <span class="fs-4 align-middle">TibiaData</span>
+      </a>
+    </div>
+  </nav>
+  <main class="flex-shrink-0 pb-0">
+    <div id="content">
 
-        <p
-            style="height: 35px; margin-top: 0px; margin-bottom: 15px; padding-top: 15px; font-size: 14px; background-color: #205081; color:#fff; text-align:center;">
-            <b>
-                <a href="https://docs.tibiadata.com"
-                    style="color: inherit; text-decoration: none;">docs.tibiadata.com</a>
-            </b> | go to <a href="https://tibiadata.com" target="_blank"
-                style="color: inherit; text-decoration: none;">tibiadata.com</a>
-        </p>
 
-        <span slot="overview">
-            <div class="sub-title" style="padding-top: 20px; font-size: 20px;">OVERVIEW</div>
-            <p style="font-size: 14px;">TibiaData API is a RESTful API providing information in JSON format
-                containing information from Tibia's official homepage tibia.com, so you can build your own small tools.
-            </p>
-            <p style="font-size: 14px;">The source is available on <a
-                    href="https://github.com/TibiaData/tibiadata-api-go" target="_blank"
-                    style="color: #47AFE8;">GitHub</a> | Join our <a href="https://discord.gg/zpAbn9J8WW"
-                    target="_blank" style="color: #47AFE8;">Discord server</a>
-            </p>
-            <hr />
-            <p style="font-size: 14px;">
-                Access the (modified) <a href="https://docs.tibiadata.com/swagger.json" target="_blank"
-                    style="color: #47AFE8;">swagger.json</a> for docs.tibiadata.com | Generic swagger document can be
-                found in the <a href="https://github.com/TibiaData/tibiadata-api-go/releases" target="_blank"
-                    style="color: #47AFE8;">GitHub release</a>
-            </p>
-        </span>
+      <div class="container p-0">
+        <div class="row">
 
-        <span slot="servers">
-            <div id="dev-note" style="display: none;">
-                <p style="font-size: 14px;">
-                    <strong>Note:</strong><br />
-                    You are currently using the <strong>dev</strong> docs and API server.
-                </p>
+          <div class="col-md-7 col-lg-8">
+            <div class="container px-4 pb-2 pt-5">
+
+              <h1 class="pb-2 border-bottom">TibiaData Documentation</h1>
+
+              <p>This is the API documentation for the TibiaData API.</p>
+              <p>The documentation belove is generated based on the Swagger specification.</p>
+              <hr />
+              <p>
+                Access the (modified) <a href="https://docs.tibiadata.com/swagger.json" target="_blank">swagger.json</a>
+                for docs.tibiadata.com.<br />
+                Generic swagger document can be found in the <a
+                  href="https://github.com/TibiaData/tibiadata-api-go/releases" target="_blank">GitHub release</a> page.
+              </p>
+
+              <p>
+                <code>api.tibiadata.com</code> is running the <i><b>latest</b></i> release.<br />
+                <code>dev.tibiadata.com</code> is running the <i><b>edge</b></i> version.
+              </p>
+
+              <p>Information about rate-limits or other information can be found on our homepage <a
+                  href="https://tibiadata.com" target="_blank">tibiadata.com</a>.</p>
             </div>
-        </span>
+          </div>
 
-        <p slot="footer" style="font-size: 85%; color: #777; text-align:center;">
-            Developed by <a href="https://github.com/tobiasehlert" target="_blank">Tobias Lindberg</a> since 2016. All
-            rights reserved. Our data is based on <a href="https://www.tibia.com" target="_blank">tibia.com</a>, the
-            only official Tibia website.<br />
-            Tibia is a registered trademark of <a href="https://www.cipsoft.com/en/" target="_blank">CipSoft GmbH</a>.
-            Tibia and all products related to Tibia are copyright by
-            <a href="https://www.cipsoft.com/en/" target="_blank">CipSoft GmbH</a>.
+          <div class="col-12 col-md-5 col-lg-4">
+
+            <div class="container px-4 py-5">
+              <h1 class="pb-2 border-bottom">About us</h1>
+              <div class="row row-cols-1 g-4 py-3">
+
+                <div class="col d-flex align-items-start">
+                  <i class="bi bi-browser-chrome text-body-secondary me-3" style="font-size: 1.75em;"></i>
+                  <div>
+                    <h2 class="fw-bold mb-0 fs-3 text-body-emphasis">Our Website</h2>
+                    <p>Visit us on <a href="https://tibiadata.com" target="_blank">tibiadata.com</a></p>
+                  </div>
+                </div>
+
+                <div class="col d-flex align-items-start">
+                  <i class="bi bi-patch-check text-body-secondary me-3" style="font-size: 1.75em;"></i>
+                  <div>
+                    <h2 class="fw-bold mb-0 fs-3 text-body-emphasis">Official Fansite</h2>
+                    <p>Supported fansite since 2016.</p>
+                  </div>
+                </div>
+
+                <div class="col d-flex align-items-start">
+                  <i class="bi bi-github text-body-secondary me-3" style="font-size: 1.75em;"></i>
+                  <div>
+                    <h2 class="fw-bold mb-0 fs-3 text-body-emphasis">Open Source</h2>
+                    <p>Code available on <a href="https://github.com/TibiaData">GitHub</a>.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container px-4">
+        <div class="d-flex border-top" style="height: auto;">
+
+          <rapi-doc id="thedoc" spec-url="https://docs.tibiadata.com/swagger.json" render-style="view" theme="light"
+            schema-style="table" show-header="false" show-info="false" server-url="https://dev.tibiadata.com"
+            default-api-server="https://api.tibiadata.com" primary-color="#0d6efd" load-fonts="false"
+            regular-font="$font-family-sans-serif" theme="auto" class="bg-transparent">
+
+        </div>
+      </div>
+
+      <div class="container p-0 py-5 text-center">
+        <h2 class="border-top pt-5">Follow us on social media</h2>
+
+        <div class="btn-group d-flex">
+          <div class="w-100">
+            <button class="btn btn-link" type="button" title="TibiaData on GitHub">
+              <a href="https://github.com/TibiaData" target="_blank" title="TibiaData on GitHub">
+                <i class="bi-github text-body-tertiary" style="font-size: 4em;"></i>
+              </a>
+            </button>
+            <button class="btn btn-link" type="button" title="TibiaData on Twitter">
+              <a href="https://twitter.com/TibiaData" target="_blank" title="TibiaData on Twitter">
+                <i class="bi-twitter-x text-body-tertiary" style="font-size: 4em;"></i>
+              </a>
+            </button>
+            <button class="btn btn-link" type="button" title="TibiaData on Facebook">
+              <a href="https://www.facebook.com/TibiaData" target="_blank" title="TibiaData on Facebook">
+                <i class="bi-facebook text-body-tertiary" style="font-size: 4em;"></i>
+              </a>
+            </button>
+            <button class="btn btn-link" type="button" title="TibiaData on Discord">
+              <a href="https://discord.gg/zpAbn9J8WW" target="_blank" title="TibiaData on Discord">
+                <i class="bi-discord text-body-tertiary" style="font-size: 4em;"></i>
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <footer class="footer mt-auto pt-4 border-top">
+    <div class="container container-xxl">
+
+
+
+      <div class="row row-cols-4">
+        <div class="col-8 col-lg-4 col-xl-6 mb-3">
+          <h5>About TibiaData</h5>
+          <p class="text-muted">
+            A RESTful API providing information in JSON format containing information from Tibia's official homepage
+            tibia.com
+          </p>
+        </div>
+
+        <div class="col-4 col-lg-2 col-xl-2 mb-3">
+
+          <img
+            src="/images/supported_fansite.d7b8fcb3524af2cd0fbcdca0686ff9bb733c3fe9c232849d7971528412f09610e71a54b17d0acf4578ebc2747bc32a80.png"
+            alt="Tibia supported fansite icon" width="100" height="100"
+            integrity="sha384-17j8s1JK8s0PvNygaG/5u3M8P&#43;nCMoSdeXFShBLwlhDnGlSxfQrPRXjrwnR7wyqA" />
+
+        </div>
+
+        <div class="col-6 col-lg-3 col-xl-2 mb-3">
+          <h5>TibiaData</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="https://tibiadata.com/about/" class="nav-link p-0 text-muted"
+                target="_blank">About</a>
+            </li>
+            <li class="nav-item mb-2"><a href="https://tibiadata.com/blog/" class="nav-link p-0 text-muted"
+                target="_blank">Blog</a>
+            </li>
+            <li class="nav-item mb-2"><a href="https://tibiadata.com/contact/" class="nav-link p-0 text-muted"
+                target="_blank">Contact</a></li>
+            <li class="nav-item mb-2"><a href="https://tibiadata.com/docs/" class="nav-link p-0 text-muted"
+                target="_blank">Docs</a>
+            </li>
+            <li class="nav-item mb-2"><a href="https://tibiadata.com/faq/" class="nav-link p-0 text-muted"
+                target="_blank">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3 col-xl-2 mb-3">
+          <h5>GitHub repos</h5>
+          <ul class="nav flex-column">
+
+            <li class="nav-item mb-2">
+              <a href="https://github.com/TibiaData/tibiadata-api-assets" class="nav-link p-0 text-muted"
+                target="_blank">
+                tibiadata-api-assets
+              </a>
+            </li>
+
+            <li class="nav-item mb-2">
+              <a href="https://github.com/TibiaData/tibiadata-api-docs" class="nav-link p-0 text-muted" target="_blank">
+                tibiadata-api-docs
+              </a>
+            </li>
+
+            <li class="nav-item mb-2">
+              <a href="https://github.com/TibiaData/tibiadata-api-go" class="nav-link p-0 text-muted" target="_blank">
+                tibiadata-api-go
+              </a>
+            </li>
+
+            <li class="nav-item mb-2">
+              <a href="https://github.com/TibiaData/tibiadata-docker-compose" class="nav-link p-0 text-muted"
+                target="_blank">
+                tibiadata-docker-compose
+              </a>
+            </li>
+
+            <li class="nav-item mb-2">
+              <a href="https://github.com/TibiaData/tibiadata-helm-charts" class="nav-link p-0 text-muted"
+                target="_blank">
+                tibiadata-helm-charts
+              </a>
+            </li>
+
+            <li class="nav-item mb-2">
+              <a href="https://github.com/TibiaData/tibiadata-website" class="nav-link p-0 text-muted" target="_blank">
+                tibiadata-website
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+
+
+      <div class="d-flex flex-column flex-sm-row justify-content-between pt-4 pb-2 border-top">
+        <p>© 2016 - 2023 TibiaData. All rights reserved.</p>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3">
+            <a class="link-dark" href="https://github.com/TibiaData" target="_blank" title="TibiaData on GitHub">
+              <i class="bi-github text-body-tertiary"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="link-dark" href="https://twitter.com/TibiaData" target="_blank" title="TibiaData on Twitter">
+              <i class="bi-twitter-x text-body-tertiary"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="link-dark" href="https://www.facebook.com/TibiaData" target="_blank"
+              title="TibiaData on Facebook">
+              <i class="bi-facebook text-body-tertiary"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="link-dark" href="https://discord.gg/zpAbn9J8WW" target="_blank" title="TibiaData on Discord">
+              <i class="bi-discord text-body-tertiary"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p>
+          Tibia is a registered trademark of <a href="https://www.cipsoft.com/en/" style="text-decoration: none;"
+            target="_blank">CipSoft GmbH</a>.
+          Tibia and all products related to Tibia are copyright by <a href="https://www.cipsoft.com/en/"
+            style="text-decoration: none;" target="_blank">CipSoft GmbH</a>.
         </p>
+      </div>
 
-    </rapi-doc>
+    </div>
 
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/twbs/bootstrap@5.3.2/site/static/docs/5.3/assets/js/color-modes.min.js"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
