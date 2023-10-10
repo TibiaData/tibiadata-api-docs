@@ -1855,6 +1855,10 @@
             "$ref": "#/definitions/main.Deaths"
           }
         },
+        "deaths_truncated": {
+          "description": "Whether the character's deaths were truncated or not.",
+          "type": "boolean"
+        },
         "other_characters": {
           "description": "The account's other characters.",
           "type": "array",
@@ -1990,10 +1994,59 @@
       "type": "object",
       "properties": {
         "characters": {
-          "$ref": "#/definitions/main.Character"
+          "$ref": "#/definitions/main.CharacterV3"
         },
         "information": {
           "$ref": "#/definitions/main.InformationV3"
+        }
+      }
+    },
+    "main.CharacterV3": {
+      "type": "object",
+      "properties": {
+        "account_badges": {
+          "description": "The account's badges.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.AccountBadges"
+          }
+        },
+        "account_information": {
+          "description": "The account information.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.AccountInformation"
+            }
+          ]
+        },
+        "achievements": {
+          "description": "The character's achievements.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Achievements"
+          }
+        },
+        "character": {
+          "description": "The character's information.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/main.CharacterInfo"
+            }
+          ]
+        },
+        "deaths": {
+          "description": "The character's deaths.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Deaths"
+          }
+        },
+        "other_characters": {
+          "description": "The account's other characters.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.OtherCharacters"
+          }
         }
       }
     },
