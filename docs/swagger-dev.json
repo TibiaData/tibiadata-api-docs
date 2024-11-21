@@ -2996,6 +2996,13 @@
             }
           ]
         },
+        "tibia_urls": {
+          "description": "The links to the sources of the data on tibia.com",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "timestamp": {
           "description": "The timestamp from when the data was processed.",
           "type": "string"

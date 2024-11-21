@@ -16,7 +16,7 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v4.2.3"
+    "version": "v4.3.0"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
@@ -2995,6 +2995,13 @@
               "$ref": "#/definitions/main.Status"
             }
           ]
+        },
+        "tibia_urls": {
+          "description": "The links to the sources of the data on tibia.com",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "timestamp": {
           "description": "The timestamp from when the data was processed.",
