@@ -3,9 +3,12 @@ name: GitHub Pages deployment
 on:
   push:
     branches:
-      - "main"
+      - main
     paths:
       - "docs/**"
+  repository_dispatch:
+    types:
+      - tibiadata-api-docs-deploy
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -17,10 +20,6 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
-defaults:
-  run:
-    shell: bash
 
 jobs:
   build:
