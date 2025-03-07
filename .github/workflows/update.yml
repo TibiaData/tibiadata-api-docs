@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download swagger.json from tibiadata-api-go release
-        uses: robinraju/release-downloader@v1.11
+        uses: robinraju/release-downloader@v1.12
         with:
           repository: TibiaData/tibiadata-api-go
           tag: ${{ github.event.client_payload.tag_name }}
