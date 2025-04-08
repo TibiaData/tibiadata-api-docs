@@ -16,7 +16,7 @@
       "name": "MIT",
       "url": "https://github.com/TibiaData/tibiadata-api-go/blob/main/LICENSE"
     },
-    "version": "v4.3.6"
+    "version": "v4.4.0"
   },
   "host": "api.tibiadata.com",
   "basePath": "/",
@@ -285,7 +285,8 @@
               "knights",
               "paladins",
               "sorcerers",
-              "druids"
+              "druids",
+              "monks"
             ],
             "type": "string",
             "default": "all",
@@ -1074,7 +1075,8 @@
               "knights",
               "paladins",
               "sorcerers",
-              "druids"
+              "druids",
+              "monks"
             ],
             "type": "string",
             "default": "all",

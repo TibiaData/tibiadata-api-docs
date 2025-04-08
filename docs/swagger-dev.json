@@ -285,7 +285,8 @@
               "knights",
               "paladins",
               "sorcerers",
-              "druids"
+              "druids",
+              "monks"
             ],
             "type": "string",
             "default": "all",
@@ -1074,7 +1075,8 @@
               "knights",
               "paladins",
               "sorcerers",
-              "druids"
+              "druids",
+              "monks"
             ],
             "type": "string",
             "default": "all",
